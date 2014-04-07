@@ -1,0 +1,41 @@
+opæenito 
+		- kôd - dokumentacija? hrv ili eng?
+		- SVM? log. regression?(liblinear) naive bayes? decison trees(j48 -> weka)?
+		- ambiguity - rijeèi kao npr. pas -> trenutno nebitan, ali tu je (spomenuti)
+		- usporedba metoda? - binary vs. non-binary labels -> binaray
+		- no stemming? -> probat
+		- monkey citat -> ostaviti
+		- više oznaka za uvredljivo, nepristojno, sarkazam (ili ne znam), vrijeða osobu ili nekog izvan
+		
+local features 
+			- koje termove uzeti? brojati u uvredljivim rijeèi pa uzeti x najèešæih?
+			- TF nazivnik - koji su to "svi" termovi?
+            - IDF - na koji term se misli? (slièno ko prvo pitanje)
+            - vector? duljina? razlièita? ako su samo odabrani termovi, onda je jednaka za sve
+			
+kappa iaa (cohen kappa) > 0.66 (it's gooood)
+
+1000 postova -> radnom file + radnom post -> trpaj u set da se ne duplicira
+
+parsiranje dataseta -> mapa (rijeè -> id) id=0++
+metoda(text posta, mapa) -> vektor -> kroz rijeèi u komentaru, daj id iz mape -> vector[57]++
++ nazivnik idf-a
+
+dataset statistic
+
+21.3 -> deadline
+
+pitanja (NOVO!!!):	brojevi u vektoru (kao stringovi), ignoreCase? -> da i da
+					koji vektori u WekaDT i log.reg?
+					kako napraviti arff? jer imam ogromno polje (vektor)
+					svm iz jave pomoæu librarya? glupo, al valjda da
+					serijaliziacija vektora? ili ih jednostavno zapisati nakon kreiranja u csv file pa kasnije može poslužiti
+						za log. reg.
+
+
+pitanja (NOVO!!!): klièko je marioneta (uvreda..654. linija i 1084); 696 (novinari diletanti - nepristojno); glup - nepristojno? ; 761 olinjao - nepristojno?; 795 peæina; 853GP; 864 zlikovac - nepristojno; 
+					882 (sredina reèenice - sranja); 934 - gubi se; 981 uvredljiv sarkazam?; 1180 (orangutan); 1197 (kokoške, kravice - za osobe; 1213-?; 1260/1310 - sarkazam ne uvreda primjer?)
+					1498 - jadnik - uvreedljivo; 1519 (uvreda?); 1543 nepristojno; 1589 komentar/uvredaNE; 1650 (uvreda); 1708(nepristojno); 1720(uvreda); 1757(nepristjno); 1775 (izmanipuliran narod);
+					1856(uvreda); 1907(uvreda)+next; 2063(uvreda); 2149(uvreda); 2154(uvreda); 2189(kokos-uvreda); 2288(check it); 2363(uvreda); 2385(uvreda-baraba); 2407(uvreda ili nepristojno);
+					2459(uvreda); 2506(duži, ali...); 2611(mafija posjeduje državu); 2826(uvreda); 2877(uvreda); 2902(uvreda); 2956(uvreda-kome?); 3005(uvreda); 3063(uvreda); 3110 i 3148(uvreda-POSEBNO);
+					3207(uvreda); 3246(uvreda)
