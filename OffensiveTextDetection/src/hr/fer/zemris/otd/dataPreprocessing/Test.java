@@ -33,6 +33,10 @@ public class Test {
 		vc.saveVectorsInFile(tfIdfVectors, saveTfIdfVector);
 		System.out.println();
 
+		// List<PostVector> occur = vc.getVectorsFromFile(saveOccurVector);
+		// List<PostVector> tfidf = vc.getVectorsFromFile(saveTfIdfVector);
+		// System.out.println();
+
 	}
 
 }

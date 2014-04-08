@@ -20,6 +20,7 @@ public class VectorCreator {
 
 	public VectorCreator(PredataCreator creator) {
 		this.creator = creator;
+
 	}
 
 	public List<PostVector> createOccurrenceVectors() throws IOException {
@@ -64,6 +65,7 @@ public class VectorCreator {
 			PostVector v = vectors.get(i);
 			PostVector newVector = new PostVector(v.getLabels().length, creator
 					.getWordMap().size());
+			newVector.setLabels(v.getLabels());
 			for (int j = 0; j < vectorSize; j++) {
 				double oldValue = v.getValue(j);
 				newVector.setValue(j, oldValue / maxValues[j]);
@@ -112,7 +114,11 @@ public class VectorCreator {
 	private void setValues(PostVector v, String[] values) {
 		int size = values.length;
 		for (int i = 0; i < size; i++) {
-			double value = Double.parseDouble(values[i]);
+			String val = values[i].trim();
+			if (val.isEmpty()) {
+				continue;
+			}
+			double value = Double.parseDouble(val);
 			v.setValue(i, value);
 		}
 	}
@@ -120,7 +126,11 @@ public class VectorCreator {
 	private void setLabels(PostVector v, String[] labels) {
 		int size = labels.length;
 		for (int i = 0; i < size; i++) {
-			char l = labels[i].charAt(0);
+			String val = labels[i].trim();
+			if (val.isEmpty()) {
+				continue;
+			}
+			char l = val.charAt(0);
 			v.setLabel(i, l);
 		}
 	}
@@ -148,7 +158,7 @@ public class VectorCreator {
 
 	private void writeLabels(FileWriter fw, char[] labels) throws IOException {
 		for (Character c : labels) {
-			fw.write(c + ",");
+			fw.write(c.toString() + ",");
 		}
 		fw.write("\n");
 	}
@@ -175,7 +185,7 @@ public class VectorCreator {
 	private int getWordPostOccurrences(String word, Post post) {
 		int counter = 0;
 		for (String postWord : post.getPostText().split("\\p{Z}")) {
-			if (word.equals(postWord)) {
+			if (word.equals(postWord.trim().toLowerCase())) {
 				counter++;
 			}
 		}
@@ -186,7 +196,7 @@ public class VectorCreator {
 		int counter = 0;
 		for (Post post : creator.getPosts()) {
 			for (String postWord : post.getPostText().split("\\p{Z}")) {
-				if (word.equals(postWord)) {
+				if (word.equals(postWord.trim().toLowerCase())) {
 					counter++;
 					break;
 				}
