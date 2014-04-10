@@ -11,16 +11,21 @@ public class LogisticRegression {
 		this.function = function;
 	}
 
-	public void runGradientDescent(RealMatrix theta, RealMatrix data,
+	public RealMatrix runGradientDescent(RealMatrix theta, RealMatrix data,
 			RealMatrix labels, double lambda, int iters, boolean cost) {
 		// theta = (n+1) x 1
 		// data = m x (n + 1)
 		// labels = m x 1
 		for (int x = 0; x < iters; x++) {
 			RealMatrix H = data.multiply(theta); // m x 1
-			RealMatrix diffUnderSum = function.calculate(H).subtract(labels); // m
-																				// x
-																				// 1
+			if (cost && (x % 20 == 0)) {
+				System.out.println("Iter:" + (x + 1) + "\t cost: "
+						+ getCostFunction(labels, H, lambda, theta));
+			}
+			RealMatrix diffUnderSum = function.calculateOnMatrix(H).subtract(
+					labels); // m
+			// x
+			// 1
 			RealMatrix underSum = diffUnderSum.transpose().multiply(data)
 					.transpose(); // (n+1) x 1
 			RealMatrix grad = underSum.scalarMultiply(1.0 / data
@@ -29,16 +34,15 @@ public class LogisticRegression {
 			int colSize = grad.getColumnDimension();
 			for (int i = 1; i < rowSize; i++) {
 				for (int j = 0; j < colSize; j++) {
-					double val = (lambda / data.getRowDimension())
+					double val = grad.getEntry(i, j)
+							+ (lambda / data.getRowDimension())
 							* theta.getEntry(i, j);
 					grad.setEntry(i, j, val);
 				}
 			}
 			theta = theta.subtract(grad);
-			if (cost) {
-				System.out.println(getCostFunction(labels, H, lambda, theta));
-			}
 		}
+		return theta;
 
 	}
 
@@ -47,14 +51,29 @@ public class LogisticRegression {
 		double sumThetaSquared = recalculateTheta(theta);
 		RealMatrix negatedLabels = new Array2DRowRealMatrix(
 				reverseLabels(labels));
-		RealMatrix logSigmoidH = getLogOfMatrix(function.calculate(h));
+		RealMatrix logSigmoidH = getLogOfMatrix(function.calculateOnMatrix(h));
 		RealMatrix negatedLogSigmoidH = getLogOfMatrix(recalculateH(function
-				.calculate(h)));
+				.calculateOnMatrix(h)));
 		double multOne = labels.transpose().multiply(logSigmoidH).getData()[0][0];
 		double multTwo = negatedLabels.transpose().multiply(negatedLogSigmoidH)
 				.getData()[0][0];
 		return (-1.0 / h.getRowDimension()) * (multOne + multTwo)
 				+ (lambda / (2 * h.getRowDimension())) * sumThetaSquared;
+	}
+
+	public void predict(RealMatrix theta, RealMatrix data, RealMatrix labels) {
+		int size = data.getRowDimension();
+		for (int i = 0; i < size; i++) {
+			double value = function.calculateOnMatrix(
+					data.getRowMatrix(i).multiply(theta)).getData()[0][0];
+			if (value >= 0.5) {
+				System.out.println("Prediction: " + 1 + "\tReal label: "
+						+ labels.getEntry(i, 0));
+			} else {
+				System.out.println("Prediction: " + 0 + "\tReal label: "
+						+ labels.getEntry(i, 0));
+			}
+		}
 	}
 
 	private RealMatrix recalculateH(RealMatrix matrix) {

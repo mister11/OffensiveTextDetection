@@ -9,7 +9,7 @@ import org.apache.commons.math3.linear.RealMatrix;
 
 public class LogRegUtils {
 
-	public RealMatrix getData(List<PostVector> vectors) {
+	public static RealMatrix getData(List<PostVector> vectors) {
 		int cols = vectors.get(0).getValues().length;
 		int rows = vectors.size();
 		double[][] data = new double[rows][cols + 1];
@@ -19,17 +19,17 @@ public class LogRegUtils {
 		for (int i = 0; i < rows; i++) {
 			PostVector v = vectors.get(i);
 			for (int j = 1; j < cols + 1; j++) {
-				data[i][j] = v.getValue(j);
+				data[i][j] = v.getValue(j - 1);
 			}
 		}
 		return new Array2DRowRealMatrix(data);
 	}
 
-	public RealMatrix getLabels(List<PostVector> vectors) {
+	public static RealMatrix getLabels(List<PostVector> vectors) {
 		double[][] labels = new double[vectors.size()][1];
 		int i = 0;
 		for (PostVector v : vectors) {
-			labels[i][1] = Double.valueOf(String.valueOf(v.getLabel(0)));
+			labels[i++][0] = Double.valueOf(String.valueOf(v.getLabel(0)));
 		}
 		return new Array2DRowRealMatrix(labels);
 	}

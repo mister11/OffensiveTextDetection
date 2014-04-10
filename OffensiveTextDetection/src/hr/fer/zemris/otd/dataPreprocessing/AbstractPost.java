@@ -1,5 +1,7 @@
 package hr.fer.zemris.otd.dataPreprocessing;
 
+import java.io.Serializable;
+
 /**
  * Kinda stupid class which only has a reference to posts labels. If there were
  * no this class, some other classes should have the same code for setting and
@@ -9,8 +11,12 @@ package hr.fer.zemris.otd.dataPreprocessing;
  *
  */
 
-public abstract class AbstractPost {
+public abstract class AbstractPost implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2262650736783495909L;
 	protected char[] labels;
 
 	public AbstractPost(int numberOfLabels) {

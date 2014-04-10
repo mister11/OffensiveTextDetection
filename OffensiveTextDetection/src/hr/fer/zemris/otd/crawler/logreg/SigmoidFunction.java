@@ -6,7 +6,7 @@ import org.apache.commons.math3.linear.RealMatrix;
 public class SigmoidFunction implements IFunction {
 
 	@Override
-	public RealMatrix calculate(RealMatrix matrix) {
+	public RealMatrix calculateOnMatrix(RealMatrix matrix) {
 		return sigmoid(matrix.getData());
 	}
 
@@ -20,6 +20,11 @@ public class SigmoidFunction implements IFunction {
 			}
 		}
 		return new Array2DRowRealMatrix(matrix);
+	}
+
+	@Override
+	public double calculateOnValue(double value) {
+		return 1.0 / (1.0 + Math.exp((-1.0) * value));
 	}
 
 }

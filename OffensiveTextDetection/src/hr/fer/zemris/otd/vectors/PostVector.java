@@ -2,8 +2,14 @@ package hr.fer.zemris.otd.vectors;
 
 import hr.fer.zemris.otd.dataPreprocessing.AbstractPost;
 
-public class PostVector extends AbstractPost {
+import java.io.Serializable;
 
+public class PostVector extends AbstractPost implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7203963904941484876L;
 	private double[] values;
 
 	public PostVector(int numberOfLabels, int numberOfWords) {
