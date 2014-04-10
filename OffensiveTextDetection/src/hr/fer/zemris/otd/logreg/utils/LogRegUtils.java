@@ -1,4 +1,4 @@
-package hr.fer.zemris.otd.crawler.logreg.utils;
+package hr.fer.zemris.otd.logreg.utils;
 
 import hr.fer.zemris.otd.vectors.PostVector;
 

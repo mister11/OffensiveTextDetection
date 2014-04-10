@@ -1,7 +1,7 @@
-package hr.fer.zemris.otd.crawler.logreg;
+package hr.fer.zemris.otd.logreg;
 
-import hr.fer.zemris.otd.crawler.logreg.utils.LogRegUtils;
 import hr.fer.zemris.otd.dataPreprocessing.PredataCreator;
+import hr.fer.zemris.otd.logreg.utils.LogRegUtils;
 import hr.fer.zemris.otd.utils.Pair;
 import hr.fer.zemris.otd.vectors.PostVector;
 import hr.fer.zemris.otd.vectors.VectorCreator;
