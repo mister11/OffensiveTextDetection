@@ -18,7 +18,7 @@ public class LogisticRegression {
 		// labels = m x 1
 		for (int x = 0; x < iters; x++) {
 			RealMatrix H = data.multiply(theta); // m x 1
-			if (cost && (x % 20 == 0)) {
+			if (cost && (x % 50 == 0)) {
 				System.out.println("Iter:" + (x + 1) + "\t cost: "
 						+ getCostFunction(labels, H, lambda, theta));
 			}
@@ -61,19 +61,30 @@ public class LogisticRegression {
 				+ (lambda / (2 * h.getRowDimension())) * sumThetaSquared;
 	}
 
-	public void predict(RealMatrix theta, RealMatrix data, RealMatrix labels) {
+	public double predictAvg(RealMatrix theta, RealMatrix data,
+			RealMatrix labels) {
 		int size = data.getRowDimension();
+		int cnt = 0;
 		for (int i = 0; i < size; i++) {
 			double value = function.calculateOnMatrix(
 					data.getRowMatrix(i).multiply(theta)).getData()[0][0];
 			if (value >= 0.5) {
+				int label = (int) labels.getEntry(i, 0);
+				if (label == 1) {
+					cnt++;
+				}
 				System.out.println("Prediction: " + 1 + "\tReal label: "
-						+ labels.getEntry(i, 0));
+						+ label);
 			} else {
+				int label = (int) labels.getEntry(i, 0);
+				if (label == 0) {
+					cnt++;
+				}
 				System.out.println("Prediction: " + 0 + "\tReal label: "
-						+ labels.getEntry(i, 0));
+						+ label);
 			}
 		}
+		return 1.0 * cnt / size;
 	}
 
 	private RealMatrix recalculateH(RealMatrix matrix) {
