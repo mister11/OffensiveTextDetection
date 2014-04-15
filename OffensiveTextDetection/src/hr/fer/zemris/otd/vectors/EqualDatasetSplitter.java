@@ -17,6 +17,8 @@ public class EqualDatasetSplitter implements IDatasetSplitter {
 		List<PostVector> trainSet = new ArrayList<>();
 		List<PostVector> testSet = new ArrayList<>();
 		getSets(positive, negative, trainSet, testSet, percentage);
+		Collections.shuffle(trainSet);
+		Collections.shuffle(testSet);
 		return new Pair<List<PostVector>, List<PostVector>>(trainSet, testSet);
 	}
 

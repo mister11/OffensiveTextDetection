@@ -61,6 +61,7 @@ public class Test {
 			Serialize.object(trainSet, "trainSet.ser");
 			Serialize.object(testSet, "testSet.ser");
 		}
+
 		double bestLambda = 0.0;
 		double bestPrecision = 0.0;
 
@@ -83,7 +84,7 @@ public class Test {
 					System.out.println("Running gradDesc " + (i + 1)
 							+ "-th time for lambda = " + lambda);
 					finalTheta = logReg.runGradientDescent(theta, data, labels,
-							lambda, 400, true);
+							lambda, 600, true);
 					// serTheta(finalTheta, num);
 				}
 				List<PostVector> cvTestSet = dividedTrainSet.get(i);
