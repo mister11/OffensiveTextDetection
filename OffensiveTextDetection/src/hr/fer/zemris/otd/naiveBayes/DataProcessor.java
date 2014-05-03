@@ -8,6 +8,7 @@ import java.util.Set;
 
 public class DataProcessor {
 
+	// dodaj size za ovo
 	private List<Post> vectors;
 	private List<Post> positiveSet;
 	private List<Post> negativeSet;
