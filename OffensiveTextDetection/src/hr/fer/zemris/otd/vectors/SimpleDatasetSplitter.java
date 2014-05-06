@@ -1,5 +1,6 @@
 package hr.fer.zemris.otd.vectors;
 
+import hr.fer.zemris.otd.dataPreprocessing.Post;
 import hr.fer.zemris.otd.utils.Pair;
 
 import java.util.ArrayList;
@@ -9,18 +10,18 @@ import java.util.List;
 public class SimpleDatasetSplitter implements IDatasetSplitter {
 
 	@Override
-	public Pair<List<PostVector>, List<PostVector>> createDatasets(
-			List<PostVector> vectors, double percentage) {
+	public Pair<List<Post>, List<Post>> createDatasets(List<Post> vectors,
+			double percentage) {
 		Collections.shuffle(vectors);
 		int trainSetSize = (int) (vectors.size() * percentage);
-		List<PostVector> trainSet = new ArrayList<>();
-		List<PostVector> testSet = new ArrayList<>();
+		List<Post> trainSet = new ArrayList<>();
+		List<Post> testSet = new ArrayList<>();
 		createSets(trainSet, testSet, vectors, trainSetSize);
-		return new Pair<List<PostVector>, List<PostVector>>(trainSet, testSet);
+		return new Pair<List<Post>, List<Post>>(trainSet, testSet);
 	}
 
-	private void createSets(List<PostVector> trainSet,
-			List<PostVector> testSet, List<PostVector> vectors, int trainSetSize) {
+	private void createSets(List<Post> trainSet, List<Post> testSet,
+			List<Post> vectors, int trainSetSize) {
 		int size = vectors.size();
 		for (int i = 0; i < size; i++) {
 			if (i >= trainSetSize) {

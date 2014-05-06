@@ -17,16 +17,27 @@ import java.util.regex.Pattern;
 public class VectorCreator {
 
 	private PredataCreator creator;
+	private List<Post> posts;
 
-	public VectorCreator(PredataCreator creator) {
+	/**
+	 * Before creation of an object of this class, you should call @link
+	 * {@link PredataCreator#createMap(List)} with list of posts in training
+	 * set.
+	 */
+	public VectorCreator(PredataCreator creator, List<Post> posts) {
+		if (creator.getWordMap().isEmpty()) {
+			System.err
+					.println("You should create wordMap before creation of this object. Please read documetation for this constructor.");
+			System.exit(-1);
+		}
 		this.creator = creator;
-
+		this.posts = posts;
 	}
 
 	public List<PostVector> createOccurrenceVectors() throws IOException {
 		List<PostVector> occurrenceVectors = new ArrayList<>();
 		int cnt = 0;
-		for (Post p : creator.getPosts()) {
+		for (Post p : posts) {
 			System.out.println("SVM " + (++cnt));
 			occurrenceVectors.add(createOccurrenceVector(p));
 		}
@@ -36,7 +47,7 @@ public class VectorCreator {
 	public List<PostVector> createTfIdfVectors() throws IOException {
 		List<PostVector> tfIdfVectors = new ArrayList<>();
 		int cnt = 0;
-		for (Post p : creator.getPosts()) {
+		for (Post p : posts) {
 			System.out.println("TFIDF " + (++cnt));
 			tfIdfVectors.add(createTfIdfVector(p));
 		}
@@ -167,7 +178,7 @@ public class VectorCreator {
 		Map<String, Integer> wordMap = creator.getWordMap();
 		PostVector postVector = new PostVector(post.getLabels().length,
 				wordMap.size());
-		int numberOfPost = creator.getPosts().size();
+		int numberOfPost = posts.size();
 		for (String word : wordMap.keySet()) {
 			double tfidf = 0.0;
 			int wordPostOccurrences = getWordPostOccurrences(word, post);
@@ -194,7 +205,7 @@ public class VectorCreator {
 
 	private int getPostWordOccurrences(String word) {
 		int counter = 0;
-		for (Post post : creator.getPosts()) {
+		for (Post post : posts) {
 			for (String postWord : post.getPostText().split("\\p{Z}")) {
 				if (word.equals(postWord.trim().toLowerCase())) {
 					counter++;

@@ -8,7 +8,6 @@ import java.util.Set;
 
 public class DataProcessor {
 
-	// dodaj size za ovo
 	private List<Post> vectors;
 	private List<Post> positiveSet;
 	private List<Post> negativeSet;
@@ -97,11 +96,16 @@ public class DataProcessor {
 		}
 	}
 
-	public int getNumOfNegatives() {
+	public int totalSize() {
+		return vectors.size();
+	}
+
+	public int positiveSize() {
+		return positiveSet.size();
+	}
+
+	public int negativeSize() {
 		return negativeSet.size();
 	}
 
-	public int getNumOfPositives() {
-		return positiveSet.size();
-	}
 }

@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Class in which posts list and word map are created.
@@ -49,6 +51,19 @@ public class PredataCreator {
 				continue;
 			}
 			this.wordMap.put(word, id++);
+		}
+	}
+
+	// newly created method which works as it should (method above does not)
+	public void createMap(List<Post> posts) {
+		for (Post p : posts) {
+			for (String w : p.getPostText().split("\\p{Z}")) {
+				String word = w.trim().toLowerCase();
+				if (!isNotRubbish(word) || this.wordMap.containsKey(word)) {
+					continue;
+				}
+				this.wordMap.put(word, id++);
+			}
 		}
 	}
 
@@ -105,6 +120,12 @@ public class PredataCreator {
 			}
 		}
 		return labels;
+	}
+
+	private static boolean isNotRubbish(String w) {
+		Pattern p = Pattern.compile("@?\\p{L}+(\\d+)?|\\d+");
+		Matcher m = p.matcher(w);
+		return m.matches();
 	}
 
 	// standard getters

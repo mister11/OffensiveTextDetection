@@ -1,5 +1,6 @@
 package hr.fer.zemris.otd.vectors;
 
+import hr.fer.zemris.otd.dataPreprocessing.Post;
 import hr.fer.zemris.otd.utils.Pair;
 
 import java.util.ArrayList;
@@ -9,22 +10,21 @@ import java.util.List;
 public class EqualDatasetSplitter implements IDatasetSplitter {
 
 	@Override
-	public Pair<List<PostVector>, List<PostVector>> createDatasets(
-			List<PostVector> vectors, double percentage) {
-		List<PostVector> positive = new ArrayList<>();
-		List<PostVector> negative = new ArrayList<>();
+	public Pair<List<Post>, List<Post>> createDatasets(List<Post> vectors,
+			double percentage) {
+		List<Post> positive = new ArrayList<>();
+		List<Post> negative = new ArrayList<>();
 		getPosAndNeg(vectors, positive, negative);
-		List<PostVector> trainSet = new ArrayList<>();
-		List<PostVector> testSet = new ArrayList<>();
+		List<Post> trainSet = new ArrayList<>();
+		List<Post> testSet = new ArrayList<>();
 		getSets(positive, negative, trainSet, testSet, percentage);
 		Collections.shuffle(trainSet);
 		Collections.shuffle(testSet);
-		return new Pair<List<PostVector>, List<PostVector>>(trainSet, testSet);
+		return new Pair<List<Post>, List<Post>>(trainSet, testSet);
 	}
 
-	private void getSets(List<PostVector> positive, List<PostVector> negative,
-			List<PostVector> trainSet, List<PostVector> testSet,
-			double percentage) {
+	private void getSets(List<Post> positive, List<Post> negative,
+			List<Post> trainSet, List<Post> testSet, double percentage) {
 		Collections.shuffle(positive);
 		Collections.shuffle(negative);
 		int realPosSize = positive.size();
@@ -46,9 +46,9 @@ public class EqualDatasetSplitter implements IDatasetSplitter {
 		}
 	}
 
-	private void getPosAndNeg(List<PostVector> vectors,
-			List<PostVector> positive, List<PostVector> negative) {
-		for (PostVector v : vectors) {
+	private void getPosAndNeg(List<Post> vectors, List<Post> positive,
+			List<Post> negative) {
+		for (Post v : vectors) {
 			if (v.getLabel(0) == '1') {
 				positive.add(v);
 			} else if (v.getLabel(0) == '0') {

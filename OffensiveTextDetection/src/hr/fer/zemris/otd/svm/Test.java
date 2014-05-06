@@ -10,11 +10,11 @@ public class Test {
 	public static void main(String[] args) throws IOException {
 		double[] c = { 0.01, 0.1, 1, 2, 3, 4, 5, 10, 20, 30, 50, 75, 100, 150,
 				200, 300, 400, 500, 600, 750, 850, 1000 };
-		PreprocessData data = new PreprocessData("testSet.ser");
+		PreprocessData data = new PreprocessData("trainSet.ser");
 
 		svm_node[][] nodes = data.getNodes();
 		double[] labels = data.getLabels();
-		FileWriter fw = new FileWriter("testSetCV.txt");
+		FileWriter fw = new FileWriter("trainSetCV.txt");
 
 		int sizeX = nodes.length;
 		int sizeY = nodes[0].length;
