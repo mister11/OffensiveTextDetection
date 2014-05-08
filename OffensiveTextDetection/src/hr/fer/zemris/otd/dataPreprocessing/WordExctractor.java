@@ -39,7 +39,7 @@ public class WordExctractor {
 		for (String l : lines) {
 			for (String w : l.split("\\p{Z}")) {
 				if (isNotRubbish(w.trim())) {
-					fw.write(w.trim() + "\n");
+					fw.write(w.trim() + System.lineSeparator());
 				}
 			}
 		}

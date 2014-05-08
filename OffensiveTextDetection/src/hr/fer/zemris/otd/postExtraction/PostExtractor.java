@@ -82,7 +82,7 @@ public class PostExtractor {
 					return sb.toString();
 				}
 			}
-			sb.append(line.trim() + "\n");
+			sb.append(line.trim() + System.lineSeparator());
 			i++;
 		}
 	}

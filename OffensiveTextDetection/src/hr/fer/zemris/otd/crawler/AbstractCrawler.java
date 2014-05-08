@@ -153,7 +153,7 @@ public abstract class AbstractCrawler {
 			String line = "";
 			StringBuilder sb = new StringBuilder();
 			while ((line = rd.readLine()) != null) {
-				sb.append(line + "\n");
+				sb.append(line + System.lineSeparator());
 			}
 			return sb.toString();
 		} catch (IllegalStateException | IOException e) {

@@ -34,11 +34,12 @@ public class DnevnikHtmlParser implements IHtmlParser {
 					}
 					String text = a.text().trim();
 					if (text.length() > 1) {
-						w.write(text + "\n");
+						w.write(text + System.lineSeparator());
 					}
 				}
 			}
-			w.write("\n" + DELIM + "\n\n");
+			w.write(System.lineSeparator() + DELIM + System.lineSeparator()
+					+ System.lineSeparator());
 		}
 		w.close();
 		return flag;

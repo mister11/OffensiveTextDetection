@@ -11,6 +11,10 @@ import java.util.Arrays;
  */
 public class Post extends AbstractPost {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3603487520803691275L;
 	private String postText;
 
 	public Post(int numberOfLabels) {
@@ -28,7 +32,7 @@ public class Post extends AbstractPost {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(Arrays.toString(labels) + "\n");
+		sb.append(Arrays.toString(labels) + System.lineSeparator());
 		sb.append(postText);
 		return sb.toString();
 	}

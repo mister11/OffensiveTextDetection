@@ -25,7 +25,9 @@ public class Test2 {
 			String post = p.getRandomPost(f, r, upperLimit);
 			if (!seen.contains(post)) {
 				seen.add(post);
-				fw.write(post + "\n\n######\n\n");
+				fw.write(post + System.lineSeparator() + System.lineSeparator()
+						+ "######" + System.lineSeparator()
+						+ System.lineSeparator());
 			}
 		}
 		fw.close();

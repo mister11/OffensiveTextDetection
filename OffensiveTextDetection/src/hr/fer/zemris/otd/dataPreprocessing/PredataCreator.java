@@ -55,7 +55,7 @@ public class PredataCreator {
 	}
 
 	// newly created method which works as it should (method above does not)
-	public void createMap(List<Post> posts) {
+	private void createMap(List<Post> posts) {
 		for (Post p : posts) {
 			for (String w : p.getPostText().split("\\p{Z}")) {
 				String word = w.trim().toLowerCase();
@@ -63,6 +63,34 @@ public class PredataCreator {
 					continue;
 				}
 				this.wordMap.put(word, id++);
+			}
+		}
+	}
+
+	public void createMapWithMinCount(List<Post> posts, int limit) {
+		if (limit == 0) {
+			createMap(posts);
+			return;
+		}
+		Map<String, Integer> counts = new HashMap<>();
+		for (Post p : posts) {
+			for (String w : p.getPostText().split("\\p{Z}")) {
+				String word = w.trim().toLowerCase();
+				if (!isNotRubbish(word)) {
+					continue;
+				}
+				Integer count = counts.get(word);
+				if (count == null) {
+					counts.put(word, 1);
+				} else {
+					counts.put(word, (count + 1));
+				}
+			}
+		}
+		for (String key : counts.keySet()) {
+			int value = counts.get(key);
+			if (value > limit) {
+				this.wordMap.put(key, value);
 			}
 		}
 	}
@@ -104,7 +132,7 @@ public class PredataCreator {
 					isPost = !isPost;
 				}
 			} else {
-				sb.append(line + "\n ");
+				sb.append(line + System.lineSeparator() + " ");
 				i++;
 			}
 		}

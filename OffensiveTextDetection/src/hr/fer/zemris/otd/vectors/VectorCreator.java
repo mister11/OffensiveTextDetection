@@ -164,14 +164,14 @@ public class VectorCreator {
 		for (Double v : values) {
 			fw.write(String.valueOf(v) + ",");
 		}
-		fw.write("\n");
+		fw.write(System.lineSeparator());
 	}
 
 	private void writeLabels(FileWriter fw, char[] labels) throws IOException {
 		for (Character c : labels) {
 			fw.write(c.toString() + ",");
 		}
-		fw.write("\n");
+		fw.write(System.lineSeparator());
 	}
 
 	private PostVector createTfIdfVector(Post post) {

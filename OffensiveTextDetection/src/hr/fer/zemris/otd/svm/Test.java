@@ -24,7 +24,7 @@ public class Test {
 				svm_node node = nodes[i][j];
 				fw.write(node.index + ":" + node.value);
 				if (j == sizeY - 1) {
-					fw.write("\n");
+					fw.write(System.lineSeparator());
 				} else {
 					fw.write(" ");
 				}
