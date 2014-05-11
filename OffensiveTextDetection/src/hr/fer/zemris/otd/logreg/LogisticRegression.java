@@ -73,15 +73,15 @@ public class LogisticRegression {
 				if (label == 1) {
 					cnt++;
 				}
-				System.out.println("Prediction: " + 1 + "\tReal label: "
-						+ label);
+				// System.out.println("Prediction: " + 1 + "\tReal label: "
+				// + label);
 			} else {
 				int label = (int) labels.getEntry(i, 0);
 				if (label == 0) {
 					cnt++;
 				}
-				System.out.println("Prediction: " + 0 + "\tReal label: "
-						+ label);
+				// System.out.println("Prediction: " + 0 + "\tReal label: "
+				// + label);
 			}
 		}
 		return 1.0 * cnt / size;

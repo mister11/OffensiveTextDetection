@@ -16,6 +16,8 @@ public class Post extends AbstractPost {
 	 */
 	private static final long serialVersionUID = 3603487520803691275L;
 	private String postText;
+	private String mark; // used in statistical data -> examples and corner
+							// cases
 
 	public Post(int numberOfLabels) {
 		super(numberOfLabels);
@@ -27,6 +29,14 @@ public class Post extends AbstractPost {
 
 	public String getPostText() {
 		return postText;
+	}
+
+	public void setMark(String mark) {
+		this.mark = mark;
+	}
+
+	public String getMark() {
+		return mark;
 	}
 
 	@Override

@@ -43,7 +43,14 @@ public class PreprocessData {
 		return labels;
 	}
 
+	public List<PostVector> getVectors() {
+		return vectors;
+	}
+
 	public int numOfTrainData() {
+		if (vectors == null) {
+			return 0;
+		}
 		return this.vectors.size();
 	}
 

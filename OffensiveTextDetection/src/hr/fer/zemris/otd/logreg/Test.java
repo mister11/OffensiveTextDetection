@@ -39,24 +39,23 @@ public class Test {
 			IDatasetSplitter splitter = new EqualDatasetSplitter();
 			Pair<List<Post>, List<Post>> dataSets = splitter.createDatasets(
 					allPosts, 0.8);
-			creator.createMapWithMinCount(dataSets.x, 0); // creator.createMap(outputPath);
+			creator.createMapWithMinCount(dataSets.x, 1); // creator.createMap(outputPath);
 			mapSize = creator.getWordMap().size();
-			if (trainSet == null) {
-				VectorCreator numericTrainSet = new VectorCreator(creator,
-						dataSets.x);
-				trainSet = numericTrainSet.createOccurrenceVectors();
-				numericTrainSet.nNormalizeVectors(trainSet);
-				Serialize.object(trainSet, "trainSet.ser");
-			}
-			if (testSet == null) {
-				VectorCreator numericTestSet = new VectorCreator(creator,
-						dataSets.y);
-				testSet = numericTestSet.createOccurrenceVectors();
-				numericTestSet.nNormalizeVectors(testSet);
-				Serialize.object(testSet, "testSet.ser");
-			}
-		}
+			VectorCreator numericTrainSet = new VectorCreator(null,
+					creator.getWordMap(), dataSets.x);
+			trainSet = numericTrainSet.createOccurrenceVectors();
+			numericTrainSet.nNormalizeVectors(trainSet);
+			Serialize.object(trainSet, "trainSet.ser");
 
+			VectorCreator numericTestSet = new VectorCreator(null,
+					creator.getWordMap(), dataSets.y);
+			testSet = numericTestSet.createOccurrenceVectors();
+			numericTestSet.nNormalizeVectors(testSet);
+			Serialize.object(testSet, "testSet.ser");
+		}
+		if (mapSize == 0) {
+			mapSize = trainSet.get(0).getValues().length;
+		}
 		double bestLambda = 0.0;
 		double bestPrecision = 0.0;
 
@@ -78,7 +77,7 @@ public class Test {
 					System.out.println("Running gradDesc " + (i + 1)
 							+ "-th time for lambda = " + Math.pow(2, lambda));
 					finalTheta = logReg.runGradientDescent(theta, data, labels,
-							Math.pow(2, lambda), 600, true);
+							Math.pow(2, lambda), 1000, true);
 					// serTheta(finalTheta, num);
 				}
 				List<PostVector> cvTestSet = dividedTrainSet.get(i);
@@ -93,8 +92,9 @@ public class Test {
 				bestPrecision = avgAccuracy / k;
 				bestLambda = Math.pow(2, lambda);
 			}
-			System.out.println("Best precision so far (lambda = " + lambda
-					+ ": " + bestPrecision);
+			System.out.println("Current accuracy: " + (avgAccuracy / k));
+			System.out.println("Best precision so far (lambda = "
+					+ Math.pow(2, lambda) + ": " + bestPrecision);
 			System.out.println("Best lambda so far: " + bestLambda);
 		}
 		System.out.println("\nEND");

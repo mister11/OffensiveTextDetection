@@ -1,7 +1,6 @@
 package hr.fer.zemris.otd.vectors;
 
 import hr.fer.zemris.otd.dataPreprocessing.Post;
-import hr.fer.zemris.otd.dataPreprocessing.PredataCreator;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -9,6 +8,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -16,21 +16,23 @@ import java.util.regex.Pattern;
 
 public class VectorCreator {
 
-	private PredataCreator creator;
+	private Map<String, String> stemMapping;
+	private Map<String, Integer> realMap;
 	private List<Post> posts;
 
 	/**
-	 * Before creation of an object of this class, you should call @link
-	 * {@link PredataCreator#createMap(List)} with list of posts in training
-	 * set.
+	 * Before creation of an object of this class, you should call any method
+	 * which build word map
 	 */
-	public VectorCreator(PredataCreator creator, List<Post> posts) {
-		if (creator.getWordMap().isEmpty()) {
+	public VectorCreator(Map<String, String> stemMapping,
+			Map<String, Integer> realMap, List<Post> posts) {
+		if ((stemMapping != null && stemMapping.isEmpty()) || realMap.isEmpty()) {
 			System.err
-					.println("You should create wordMap before creation of this object. Please read documetation for this constructor.");
+					.println("You should create map before creation of this object. Please read documetation for this constructor.");
 			System.exit(-1);
 		}
-		this.creator = creator;
+		this.stemMapping = stemMapping;
+		this.realMap = realMap;
 		this.posts = posts;
 	}
 
@@ -38,7 +40,7 @@ public class VectorCreator {
 		List<PostVector> occurrenceVectors = new ArrayList<>();
 		int cnt = 0;
 		for (Post p : posts) {
-			System.out.println("SVM " + (++cnt));
+			System.out.println("occur " + (++cnt));
 			occurrenceVectors.add(createOccurrenceVector(p));
 		}
 		return occurrenceVectors;
@@ -47,9 +49,16 @@ public class VectorCreator {
 	public List<PostVector> createTfIdfVectors() throws IOException {
 		List<PostVector> tfIdfVectors = new ArrayList<>();
 		int cnt = 0;
-		for (Post p : posts) {
-			System.out.println("TFIDF " + (++cnt));
-			tfIdfVectors.add(createTfIdfVector(p));
+		if (stemMapping == null) {
+			for (Post p : posts) {
+				System.out.println("tfidf " + (++cnt));
+				tfIdfVectors.add(createTfIdfVector(p));
+			}
+		} else {
+			for (Post p : posts) {
+				System.out.println("tfidf " + (++cnt));
+				tfIdfVectors.add(createTfIdfVectorStemmed(p));
+			}
 		}
 		return tfIdfVectors;
 	}
@@ -74,8 +83,8 @@ public class VectorCreator {
 		int vectorSize = maxValues.length;
 		for (int i = 0; i < listSize; i++) {
 			PostVector v = vectors.get(i);
-			PostVector newVector = new PostVector(v.getLabels().length, creator
-					.getWordMap().size());
+			PostVector newVector = new PostVector(v.getLabels().length,
+					realMap.size());
 			newVector.setLabels(v.getLabels());
 			for (int j = 0; j < vectorSize; j++) {
 				double oldValue = v.getValue(j);
@@ -113,8 +122,8 @@ public class VectorCreator {
 		for (; i < size;) {
 			String[] labels = lines.get(i++).split(",");
 			String[] values = lines.get(i++).split(",");
-			PostVector v = new PostVector(labels.length, creator.getWordMap()
-					.size());
+			// TODO - if ever is gonna be used, watch out for two types map
+			PostVector v = new PostVector(labels.length, realMap.size());
 			setLabels(v, labels);
 			setValues(v, values);
 			vectors.add(v);
@@ -175,11 +184,10 @@ public class VectorCreator {
 	}
 
 	private PostVector createTfIdfVector(Post post) {
-		Map<String, Integer> wordMap = creator.getWordMap();
 		PostVector postVector = new PostVector(post.getLabels().length,
-				wordMap.size());
+				realMap.size());
 		int numberOfPost = posts.size();
-		for (String word : wordMap.keySet()) {
+		for (String word : realMap.keySet()) {
 			double tfidf = 0.0;
 			int wordPostOccurrences = getWordPostOccurrences(word, post);
 			if (wordPostOccurrences > 0) {
@@ -187,9 +195,43 @@ public class VectorCreator {
 				double log = Math.log(1.0 * numberOfPost / postWordOccurrences);
 				tfidf = 1.0 * wordPostOccurrences * log;
 			}
-			postVector.setValue(wordMap.get(word), tfidf);
+			postVector.setValue(realMap.get(word), tfidf);
 		}
 		postVector.setLabels(post.getLabels());
+		return postVector;
+	}
+
+	private PostVector createTfIdfVectorStemmed(Post post) {
+		PostVector postVector = new PostVector(post.getLabels().length,
+				realMap.size());
+		Map<String, Integer> stemWordPost = new HashMap<>();
+		Map<String, Integer> stemPostWord = new HashMap<>();
+		for (String word : stemMapping.keySet()) {
+			int wordPostOccurrences = getWordPostOccurrences(word, post);
+			String stemWord = stemMapping.get(word);
+			if (stemWordPost.get(stemWord) == null) {
+				stemWordPost.put(stemWord, wordPostOccurrences);
+			} else {
+				stemWordPost.put(stemWord, stemPostWord.get(stemWord)
+						+ wordPostOccurrences);
+			}
+			if (stemWordPost.get(stemWord) > 0) {
+				int postWordOccurrences = getPostWordOccurrences(word);
+				if (stemPostWord.get(stemWord) == null) {
+					stemPostWord.put(stemWord, postWordOccurrences);
+				} else {
+					stemPostWord.put(stemWord, stemPostWord.get(stemWord)
+							+ postWordOccurrences);
+				}
+			}
+		}
+		int numberOfPost = posts.size();
+		for (String stem : realMap.keySet()) {
+			double tfidf = 0.0;
+			double log = Math.log(1.0 * numberOfPost / stemPostWord.get(stem));
+			tfidf = 1.0 * stemWordPost.get(stem) * log;
+			postVector.setValue(realMap.get(stem), tfidf);
+		}
 		return postVector;
 	}
 
@@ -217,9 +259,9 @@ public class VectorCreator {
 	}
 
 	private PostVector createOccurrenceVector(Post post) {
-		Map<String, Integer> wordMap = creator.getWordMap();
 		PostVector postVector = new PostVector(post.getLabels().length,
-				wordMap.size());
+				realMap.size());
+
 		for (String w : post.getPostText().split("\\p{Z}")) {
 			String word = w.trim().toLowerCase();
 			// double negation ftw...not (not rubbish) == rubbish
@@ -227,14 +269,19 @@ public class VectorCreator {
 				continue; // we are not interested in parts that are not real
 							// words
 			}
-			if (!wordMap.containsKey(word)) {
-				System.err
-						.println("So, word you find in post you used to create wordMap is not in that map... You must be kiddin' me!");
-				System.err
-						.println("As you probably expect, this program will now crash!");
-				System.exit(-1);
+			if (stemMapping == null && !realMap.containsKey(word)) {
+				continue;
 			}
-			int position = wordMap.get(word);
+			if (stemMapping != null
+					&& !realMap.containsKey(stemMapping.get(word))) {
+				continue;
+			}
+			int position;
+			if (stemMapping == null) {
+				position = realMap.get(word);
+			} else {
+				position = realMap.get(stemMapping.get(word));
+			}
 			double oldValue = postVector.getValue(position);
 			postVector.setValue(position, oldValue + 1);
 		}

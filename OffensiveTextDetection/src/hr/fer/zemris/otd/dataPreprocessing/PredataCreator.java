@@ -138,6 +138,37 @@ public class PredataCreator {
 		}
 	}
 
+	public List<Post> createSpecPostsList(String dataset) throws IOException {
+		File f = new File(dataset);
+		List<String> lines = Files.readAllLines(f.toPath(),
+				StandardCharsets.UTF_8);
+		int size = lines.size();
+		List<Post> specPosts = new ArrayList<>();
+		Post p = null;
+		StringBuilder sb = null;
+		for (int i = 0; i < size; i++) {
+			String line = lines.get(i).trim();
+			if (line.matches("######\\w{1,}")) {
+				String mark = line.substring(6);
+				char[] labels = readLabels(lines.get(++i).trim());
+				p = new Post(labels.length);
+				p.setLabels(labels);
+				p.setMark(mark);
+				sb = new StringBuilder();
+				i++; // prebaci se na text
+				while (!lines.get(i).startsWith("######")) {
+					sb.append(lines.get(i) + System.lineSeparator() + " ");
+					i++;
+				}
+				p.setPostText(sb.toString());
+				specPosts.add(p);
+				p = null;
+				sb = null;
+			}
+		}
+		return specPosts;
+	}
+
 	// method reads post labels
 	private char[] readLabels(String labelLine) {
 		char[] labels = new char[labelLine.split("\\p{Z}").length];
