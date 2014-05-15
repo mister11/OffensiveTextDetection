@@ -2,10 +2,10 @@ package hr.fer.zemris.otd.svm;
 
 import hr.fer.zemris.otd.utils.Deserialize;
 import hr.fer.zemris.otd.vectors.PostVector;
-
-import java.util.List;
-
 import libsvm.svm_node;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PreprocessData {
 
@@ -13,6 +13,10 @@ public class PreprocessData {
 
 	public PreprocessData(String fileForDeser) {
 		vectors = Deserialize.listPostVectors(fileForDeser);
+	}
+
+	public PreprocessData(List<PostVector> vectors) {
+		this.vectors = new ArrayList<>(vectors);
 	}
 
 	public svm_node[][] getNodes() {

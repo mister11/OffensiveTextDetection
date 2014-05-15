@@ -4,20 +4,23 @@ import hr.fer.zemris.otd.crossValidation.CrossValidation;
 import hr.fer.zemris.otd.dataPreprocessing.Post;
 import hr.fer.zemris.otd.dataPreprocessing.PredataCreator;
 import hr.fer.zemris.otd.logreg.utils.LogRegUtils;
-import hr.fer.zemris.otd.utils.Deserialize;
+import hr.fer.zemris.otd.stemming.DataManager;
 import hr.fer.zemris.otd.utils.Pair;
-import hr.fer.zemris.otd.utils.Serialize;
 import hr.fer.zemris.otd.vectors.EqualDatasetSplitter;
 import hr.fer.zemris.otd.vectors.IDatasetSplitter;
 import hr.fer.zemris.otd.vectors.PostVector;
 import hr.fer.zemris.otd.vectors.VectorCreator;
-
-import java.io.IOException;
-import java.util.List;
-
 import org.apache.commons.math3.linear.RealMatrix;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Test {
+
+	private static String directory = "D:/Documents/SVEN/FER/ZR/stemmer/";
+	private static String postFile = "allPosts.txt";
+	private static String stemmedPosts = "stemmedPosts.txt";
 
 	public static void main(String[] args) throws IOException,
 			ClassNotFoundException {
@@ -27,32 +30,37 @@ public class Test {
 		String occurTestVectors = "C:/Users/Big Sven/Desktop/experiment/lemma/occurTest.txt";
 		String outputPath = "C:/Users/Big Sven/Desktop/experiment/lemma/my_word_list.txt";
 
-		List<PostVector> trainSet = Deserialize.listPostVectors("trainSet.ser");
-		List<PostVector> testSet = Deserialize.listPostVectors("testSet.ser");
 		int mapSize = 0;
 
-		if (trainSet == null || testSet == null) {
-			PredataCreator creator = new PredataCreator();
-			creator.createPostsList("C:/Users/Big Sven/Desktop/experiment/lemma/novo_razmaci_bezPraznihLinija.txt");
-			List<Post> allPosts = creator.getPosts();
+		List<PostVector> trainSet = new ArrayList<>();
+		List<PostVector> testSet = new ArrayList<>();
 
-			IDatasetSplitter splitter = new EqualDatasetSplitter();
-			Pair<List<Post>, List<Post>> dataSets = splitter.createDatasets(
-					allPosts, 0.8);
-			creator.createMapWithMinCount(dataSets.x, 1); // creator.createMap(outputPath);
-			mapSize = creator.getWordMap().size();
-			VectorCreator numericTrainSet = new VectorCreator(null,
-					creator.getWordMap(), dataSets.x);
-			trainSet = numericTrainSet.createOccurrenceVectors();
-			numericTrainSet.nNormalizeVectors(trainSet);
-			Serialize.object(trainSet, "trainSet.ser");
+		PredataCreator creator = new PredataCreator();
+		creator.createPostsList("C:/Users/Big Sven/Desktop/experiment/lemma/novo_razmaci_bezPraznihLinija.txt");
+		List<Post> allPosts = creator.getPosts();
 
-			VectorCreator numericTestSet = new VectorCreator(null,
-					creator.getWordMap(), dataSets.y);
-			testSet = numericTestSet.createOccurrenceVectors();
-			numericTestSet.nNormalizeVectors(testSet);
-			Serialize.object(testSet, "testSet.ser");
-		}
+		IDatasetSplitter splitter = new EqualDatasetSplitter();
+		Pair<List<Post>, List<Post>> dataSets = splitter.createDatasets(
+				allPosts, 0.8);
+		DataManager stemmer = new DataManager();
+		stemmer.writePlainPosts(dataSets.x, directory + postFile);
+		stemmer.stemPosts(directory, "Croatian_stemmer.py", postFile,
+				stemmedPosts);
+		stemmer.createMap(directory + stemmedPosts);
+		// creator.createMapWithMinCount(dataSets.x, 1); //
+		// creator.createMap(outputPath);
+		mapSize = stemmer.getRealMap().size();
+
+		VectorCreator numericTrainSet = new VectorCreator(
+				stemmer.getStemMapping(), stemmer.getRealMap(), dataSets.x);
+		trainSet = numericTrainSet.createOccurrenceVectors();
+		numericTrainSet.nNormalizeVectors(trainSet);
+
+		VectorCreator numericTestSet = new VectorCreator(
+				stemmer.getStemMapping(), stemmer.getRealMap(), dataSets.y);
+		testSet = numericTestSet.createOccurrenceVectors();
+		numericTestSet.nNormalizeVectors(testSet);
+
 		if (mapSize == 0) {
 			mapSize = trainSet.get(0).getValues().length;
 		}
@@ -93,7 +101,7 @@ public class Test {
 				bestLambda = Math.pow(2, lambda);
 			}
 			System.out.println("Current accuracy: " + (avgAccuracy / k));
-			System.out.println("Best precision so far (lambda = "
+			System.out.println("Best accuracy so far (lambda = "
 					+ Math.pow(2, lambda) + ": " + bestPrecision);
 			System.out.println("Best lambda so far: " + bestLambda);
 		}

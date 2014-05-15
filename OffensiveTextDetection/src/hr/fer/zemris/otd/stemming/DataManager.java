@@ -14,9 +14,8 @@ import java.util.Map;
 /**
  * First use {@link #writePlainPosts(List, String)} to write posts text in file.
  * Then use {@link #stemPosts(String, String)} to stem words from posts.
- * 
- * @author Sven Vidak
  *
+ * @author Sven Vidak
  */
 
 public class DataManager {
@@ -33,6 +32,9 @@ public class DataManager {
 
 	public void writePlainPosts(List<Post> posts, String filename)
 			throws IOException {
+		if (new File(filename).exists()) {
+			return;
+		}
 		FileWriter fw = new FileWriter(filename);
 		for (Post p : posts) {
 			fw.write(p.getPostText());
@@ -41,7 +43,10 @@ public class DataManager {
 	}
 
 	public void stemPosts(String directory, String scriptName,
-			String inputFile, String outputFile) throws IOException {
+						  String inputFile, String outputFile) throws IOException {
+		if (new File(directory + outputFile).exists()) {
+			return;
+		}
 		ProcessBuilder process = new ProcessBuilder("python", scriptName,
 				inputFile, outputFile);
 		process.directory(new File(directory));

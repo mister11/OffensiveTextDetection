@@ -11,7 +11,7 @@ public class SimpleDatasetSplitter implements IDatasetSplitter {
 
 	@Override
 	public Pair<List<Post>, List<Post>> createDatasets(List<Post> vectors,
-			double percentage) {
+													   double percentage) {
 		Collections.shuffle(vectors);
 		int trainSetSize = (int) (vectors.size() * percentage);
 		List<Post> trainSet = new ArrayList<>();
@@ -21,7 +21,7 @@ public class SimpleDatasetSplitter implements IDatasetSplitter {
 	}
 
 	private void createSets(List<Post> trainSet, List<Post> testSet,
-			List<Post> vectors, int trainSetSize) {
+							List<Post> vectors, int trainSetSize) {
 		int size = vectors.size();
 		for (int i = 0; i < size; i++) {
 			if (i >= trainSetSize) {

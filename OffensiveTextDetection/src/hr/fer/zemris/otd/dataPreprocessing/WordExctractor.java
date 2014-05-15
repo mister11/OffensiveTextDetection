@@ -12,23 +12,19 @@ import java.util.regex.Pattern;
 /**
  * Class which gets text file with everything separated by space and makes file
  * in which are all words in format: one word - one line.
- * 
- * @author Sven Vidak
  *
+ * @author Sven Vidak
  */
 public class WordExctractor {
 
 	/**
 	 * Method that takes path to input file in format described above and
 	 * outputs file at location given as ouput path.
-	 * 
-	 * @param inputPath
-	 *            Input file in described format.
-	 * @param outputPath
-	 *            Output file in format: one word - one line
-	 * @throws IOException
-	 *             If there is some error during processing files (writing or
-	 *             reading)
+	 *
+	 * @param inputPath  Input file in described format.
+	 * @param outputPath Output file in format: one word - one line
+	 * @throws IOException If there is some error during processing files (writing or
+	 *                     reading)
 	 */
 	public static void getAllWords(String inputPath, String outputPath)
 			throws IOException {
@@ -49,11 +45,10 @@ public class WordExctractor {
 	/**
 	 * Checks whether given string is valid string or not. Valid string is
 	 * everything except punctuation or some crazy looking strings.
-	 * 
-	 * @param w
-	 *            String from file.
+	 *
+	 * @param w String from file.
 	 * @return <code>true</code> if string is valid word, <code>false</code>
-	 *         otherwise
+	 * otherwise
 	 */
 	private static boolean isNotRubbish(String w) {
 		Pattern p = Pattern.compile("@?\\p{L}+(\\d+)?|\\d+");

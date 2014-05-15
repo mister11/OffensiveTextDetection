@@ -29,7 +29,7 @@ public class CrossValidation {
 	}
 
 	public List<PostVector> getOthers(List<List<PostVector>> dividedTrainSet,
-			int index) {
+									  int index) {
 		if (index < 0 || index > folds) {
 			System.err
 					.println("Index of a cross validation set is bigger than number of folds");

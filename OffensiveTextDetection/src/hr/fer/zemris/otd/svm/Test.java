@@ -2,57 +2,65 @@ package hr.fer.zemris.otd.svm;
 
 import hr.fer.zemris.otd.dataPreprocessing.Post;
 import hr.fer.zemris.otd.dataPreprocessing.PredataCreator;
+import hr.fer.zemris.otd.stemming.DataManager;
 import hr.fer.zemris.otd.utils.Pair;
-import hr.fer.zemris.otd.utils.Serialize;
 import hr.fer.zemris.otd.vectors.EqualDatasetSplitter;
 import hr.fer.zemris.otd.vectors.IDatasetSplitter;
 import hr.fer.zemris.otd.vectors.PostVector;
 import hr.fer.zemris.otd.vectors.VectorCreator;
+import libsvm.svm;
+import libsvm.svm_parameter;
+import libsvm.svm_problem;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import libsvm.svm;
-import libsvm.svm_parameter;
-import libsvm.svm_problem;
-
 public class Test {
 
+	private static String directory = "D:/Documents/SVEN/FER/ZR/stemmer/";
+	private static String postFile = "allPosts.txt";
+	private static String stemmedPosts = "stemmedPosts.txt";
+
 	public static void main(String[] args) throws IOException {
-		double[] c = { 0.01, 0.1, 1, 2, 3, 4, 5, 10, 20, 30, 50, 75, 100, 150,
-				200, 300, 400, 500, 600, 750, 850, 1000 };
-		PreprocessData trainSet = new PreprocessData("trainSet.ser");
-		PreprocessData testSet = new PreprocessData("testSet.ser");
-		int trainSize = trainSet.numOfTrainData();
-		int testSize = testSet.numOfTrainData();
+		// PreprocessData trainSet = new PreprocessData("trainSet.ser");
+		// PreprocessData testSet = new PreprocessData("testSet.ser");
+		// int trainSize = trainSet.numOfTrainData();
+		// int testSize = testSet.numOfTrainData();
+		//
+		// if (trainSize == 0 || testSize == 0) {
 
-		if (trainSize == 0 || testSize == 0) {
-			List<PostVector> trainVecs = new ArrayList<>();
-			List<PostVector> testVecs = new ArrayList<>();
-			PredataCreator creator = new PredataCreator();
-			creator.createPostsList("C:/Users/Big Sven/Desktop/experiment/lemma/novo_razmaci_bezPraznihLinija.txt");
-			List<Post> allPosts = creator.getPosts();
+		List<PostVector> trainVecs = new ArrayList<>();
+		List<PostVector> testVecs = new ArrayList<>();
+		PredataCreator creator = new PredataCreator();
+		creator.createPostsList("C:/Users/Big Sven/Desktop/experiment/lemma/novo_razmaci_bezPraznihLinija.txt");
+		List<Post> allPosts = creator.getPosts();
 
-			IDatasetSplitter splitter = new EqualDatasetSplitter();
-			Pair<List<Post>, List<Post>> dataSets = splitter.createDatasets(
-					allPosts, 0.8);
-			creator.createMapWithMinCount(dataSets.x, 0); // creator.createMap(outputPath);
+		IDatasetSplitter splitter = new EqualDatasetSplitter();
+		Pair<List<Post>, List<Post>> dataSets = splitter.createDatasets(
+				allPosts, 0.8);
+		DataManager stemmer = new DataManager();
+		stemmer.writePlainPosts(dataSets.x, directory + postFile);
+		stemmer.stemPosts(directory, "Croatian_stemmer.py", postFile,
+				stemmedPosts);
+		stemmer.createMap(directory + stemmedPosts);
+		// creator.createMapWithMinCount(dataSets.x, 0); //
+		// creator.createMap(outputPath);
 
-			VectorCreator numericTrainSet = new VectorCreator(null,
-					creator.getWordMap(), dataSets.x);
-			trainVecs = numericTrainSet.createOccurrenceVectors();
-			numericTrainSet.nNormalizeVectors(trainVecs);
-			Serialize.object(trainSet, "trainSet.ser");
-			trainSet = new PreprocessData("trainSet.ser");
+		VectorCreator numericTrainSet = new VectorCreator(
+				stemmer.getStemMapping(), stemmer.getRealMap(), dataSets.x);
+		trainVecs = numericTrainSet.createOccurrenceVectors();
+		numericTrainSet.nNormalizeVectors(trainVecs);
+		PreprocessData trainSet;
+		trainSet = new PreprocessData(trainVecs);
 
-			VectorCreator numericTestSet = new VectorCreator(null,
-					creator.getWordMap(), dataSets.y);
-			testVecs = numericTestSet.createOccurrenceVectors();
-			numericTestSet.nNormalizeVectors(testVecs);
-			Serialize.object(testSet, "testSet.ser");
-			testSet = new PreprocessData("testSet.ser");
-		}
+		VectorCreator numericTestSet = new VectorCreator(
+				stemmer.getStemMapping(), stemmer.getRealMap(), dataSets.y);
+		testVecs = numericTestSet.createOccurrenceVectors();
+		numericTestSet.nNormalizeVectors(testVecs);
+		PreprocessData testSet;
+		testSet = new PreprocessData(testVecs);
+		// }
 
 		// svm_node[][] nodes = trainSet.getNodes();
 		// double[] labels = trainSet.getLabels();

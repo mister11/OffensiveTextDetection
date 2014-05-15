@@ -10,7 +10,7 @@ public class ProbabilityCalculator {
 	private Map<String, Double> negativeProb;
 
 	public ProbabilityCalculator(Map<String, Integer> wordMap,
-			DataProcessor data) {
+								 DataProcessor data) {
 		this.data = data;
 		calculateProbabilities(wordMap);
 	}

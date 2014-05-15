@@ -1,11 +1,10 @@
 package hr.fer.zemris.otd.logreg.utils;
 
 import hr.fer.zemris.otd.vectors.PostVector;
-
-import java.util.List;
-
 import org.apache.commons.math3.linear.Array2DRowRealMatrix;
 import org.apache.commons.math3.linear.RealMatrix;
+
+import java.util.List;
 
 public class LogRegUtils {
 

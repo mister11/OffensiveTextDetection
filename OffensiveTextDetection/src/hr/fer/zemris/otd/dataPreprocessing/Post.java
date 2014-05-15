@@ -5,38 +5,37 @@ import java.util.Arrays;
 /**
  * Class representing single post. It extends {@link AbstractPost} so it also
  * has a reference to labels for that post.
- * 
- * @author Sven Vidak
  *
+ * @author Sven Vidak
  */
 public class Post extends AbstractPost {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 3603487520803691275L;
 	private String postText;
 	private String mark; // used in statistical data -> examples and corner
-							// cases
+	// cases
 
 	public Post(int numberOfLabels) {
 		super(numberOfLabels);
-	}
-
-	public void setPostText(String postText) {
-		this.postText = postText;
 	}
 
 	public String getPostText() {
 		return postText;
 	}
 
-	public void setMark(String mark) {
-		this.mark = mark;
+	public void setPostText(String postText) {
+		this.postText = postText;
 	}
 
 	public String getMark() {
 		return mark;
+	}
+
+	public void setMark(String mark) {
+		this.mark = mark;
 	}
 
 	@Override

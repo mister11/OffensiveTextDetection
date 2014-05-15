@@ -25,7 +25,7 @@ public class VectorCreator {
 	 * which build word map
 	 */
 	public VectorCreator(Map<String, String> stemMapping,
-			Map<String, Integer> realMap, List<Post> posts) {
+						 Map<String, Integer> realMap, List<Post> posts) {
 		if ((stemMapping != null && stemMapping.isEmpty()) || realMap.isEmpty()) {
 			System.err
 					.println("You should create map before creation of this object. Please read documetation for this constructor.");
@@ -119,7 +119,7 @@ public class VectorCreator {
 		List<PostVector> vectors = new ArrayList<>();
 		int i = 0;
 		int size = lines.size();
-		for (; i < size;) {
+		for (; i < size; ) {
 			String[] labels = lines.get(i++).split(",");
 			String[] values = lines.get(i++).split(",");
 			// TODO - if ever is gonna be used, watch out for two types map
@@ -267,7 +267,7 @@ public class VectorCreator {
 			// double negation ftw...not (not rubbish) == rubbish
 			if (!isNotRubbish(word)) {
 				continue; // we are not interested in parts that are not real
-							// words
+				// words
 			}
 			if (stemMapping == null && !realMap.containsKey(word)) {
 				continue;

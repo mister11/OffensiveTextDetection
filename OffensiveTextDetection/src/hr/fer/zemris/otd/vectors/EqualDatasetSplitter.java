@@ -11,7 +11,7 @@ public class EqualDatasetSplitter implements IDatasetSplitter {
 
 	@Override
 	public Pair<List<Post>, List<Post>> createDatasets(List<Post> vectors,
-			double percentage) {
+													   double percentage) {
 		List<Post> positive = new ArrayList<>();
 		List<Post> negative = new ArrayList<>();
 		getPosAndNeg(vectors, positive, negative);
@@ -24,7 +24,7 @@ public class EqualDatasetSplitter implements IDatasetSplitter {
 	}
 
 	private void getSets(List<Post> positive, List<Post> negative,
-			List<Post> trainSet, List<Post> testSet, double percentage) {
+						 List<Post> trainSet, List<Post> testSet, double percentage) {
 		Collections.shuffle(positive);
 		Collections.shuffle(negative);
 		int realPosSize = positive.size();
@@ -47,7 +47,7 @@ public class EqualDatasetSplitter implements IDatasetSplitter {
 	}
 
 	private void getPosAndNeg(List<Post> vectors, List<Post> positive,
-			List<Post> negative) {
+							  List<Post> negative) {
 		for (Post v : vectors) {
 			if (v.getLabel(0) == '1') {
 				positive.add(v);

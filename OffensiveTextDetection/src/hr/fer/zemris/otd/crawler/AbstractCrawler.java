@@ -1,28 +1,22 @@
 package hr.fer.zemris.otd.crawler;
 
 import hr.fer.zemris.otd.htmlParser.IHtmlParser;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.regex.Pattern;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.HttpClientUtils;
 import org.apache.http.impl.client.HttpClientBuilder;
 
+import java.io.*;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.regex.Pattern;
+
 /**
  * Class which implements functionality specific to all crawlers used.
- * 
+ *
  * @author Sven Vidak
- * 
  */
 
 public abstract class AbstractCrawler {
@@ -41,22 +35,17 @@ public abstract class AbstractCrawler {
 
 	/**
 	 * Sets up all necessary parameters.
-	 * 
-	 * @param initLink
-	 *            Link from which crawling will start.
-	 * @param filePath
-	 *            Path where .txt file will be saved.
-	 * @param filePrefix
-	 *            Arbitrary file prefix used for distinction between pages from
-	 *            which data is crawled.
-	 * @param threadPattern
-	 *            Pattern used for recognizing pages which contains links to
-	 *            threads.
-	 * @param postPattern
-	 *            Pattern used for recognizing pages which contains posts.
+	 *
+	 * @param initLink      Link from which crawling will start.
+	 * @param filePath      Path where .txt file will be saved.
+	 * @param filePrefix    Arbitrary file prefix used for distinction between pages from
+	 *                      which data is crawled.
+	 * @param threadPattern Pattern used for recognizing pages which contains links to
+	 *                      threads.
+	 * @param postPattern   Pattern used for recognizing pages which contains posts.
 	 */
 	public AbstractCrawler(String initLink, String filePath, String filePrefix,
-			String threadPattern, String postPattern) {
+						   String threadPattern, String postPattern) {
 		this.initLink = initLink;
 		this.threadPattern = Pattern.compile(threadPattern);
 		this.postPattern = Pattern.compile(postPattern);
@@ -70,9 +59,8 @@ public abstract class AbstractCrawler {
 
 	/**
 	 * Method used for running crawler.
-	 * 
-	 * @param parser
-	 *            Some implementation of {@link IHtmlParser}
+	 *
+	 * @param parser Some implementation of {@link IHtmlParser}
 	 */
 	public void run(IHtmlParser parser) {
 		String html = getHtml(this.initLink);
@@ -117,9 +105,8 @@ public abstract class AbstractCrawler {
 
 	/**
 	 * Method used for getting next page URL given some URL.
-	 * 
-	 * @param url
-	 *            Current URL.
+	 *
+	 * @param url Current URL.
 	 * @return URL to next page.
 	 */
 	protected abstract String nextPageUrl(String url);
@@ -136,9 +123,8 @@ public abstract class AbstractCrawler {
 
 	/**
 	 * Method which get web page content given some URL.
-	 * 
-	 * @param link
-	 *            URL
+	 *
+	 * @param link URL
 	 * @return Web page content in form of HTML.
 	 */
 	protected String getHtml(String link) {

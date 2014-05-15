@@ -1,14 +1,14 @@
 package hr.fer.zemris.otd.htmlParser;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.Queue;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Queue;
 
 public class IndexHtmlParser implements IHtmlParser {
 
@@ -35,7 +35,7 @@ public class IndexHtmlParser implements IHtmlParser {
 
 	@Override
 	public void extractLinks(String html, Queue<String> links,
-			HashSet<String> visited) {
+							 HashSet<String> visited) {
 		Document doc = Jsoup.parse(html);
 		Elements topics = doc.select("dt.topictitle");
 		for (Element e : topics) {

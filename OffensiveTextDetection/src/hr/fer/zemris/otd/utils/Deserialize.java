@@ -1,13 +1,12 @@
 package hr.fer.zemris.otd.utils;
 
 import hr.fer.zemris.otd.vectors.PostVector;
+import org.apache.commons.math3.linear.RealMatrix;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.List;
-
-import org.apache.commons.math3.linear.RealMatrix;
 
 public class Deserialize {
 

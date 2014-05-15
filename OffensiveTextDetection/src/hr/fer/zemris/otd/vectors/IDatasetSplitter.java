@@ -8,6 +8,6 @@ import java.util.List;
 public interface IDatasetSplitter {
 
 	Pair<List<Post>, List<Post>> createDatasets(List<Post> vectors,
-			double percentage);
+												double percentage);
 
 }

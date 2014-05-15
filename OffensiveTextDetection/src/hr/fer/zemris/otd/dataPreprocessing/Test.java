@@ -5,9 +5,8 @@ import java.util.List;
 
 /**
  * Statistika za ZR - 3. dio
- * 
- * @author Sven Vidak
  *
+ * @author Sven Vidak
  */
 
 public class Test {

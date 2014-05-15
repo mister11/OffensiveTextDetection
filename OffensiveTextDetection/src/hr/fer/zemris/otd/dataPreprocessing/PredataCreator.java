@@ -13,11 +13,10 @@ import java.util.regex.Pattern;
 
 /**
  * Class in which posts list and word map are created.
- * 
+ * <p>
  * It's a general class for making crucial pieces of data used in this project.
- * 
- * @author Sven Vidak
  *
+ * @author Sven Vidak
  */
 public class PredataCreator {
 
@@ -31,15 +30,19 @@ public class PredataCreator {
 		posts = new ArrayList<>();
 	}
 
+	private static boolean isNotRubbish(String w) {
+		Pattern p = Pattern.compile("@?\\p{L}+(\\d+)?|\\d+");
+		Matcher m = p.matcher(w);
+		return m.matches();
+	}
+
 	/**
 	 * Method creates word map in format: word - id
-	 * 
-	 * @param path
-	 *            Path to file which contains list of all words. Method which
-	 *            provides such file is
-	 *            {@link WordExctractor#getAllWords(String, String)}
-	 * @throws IOException
-	 *             If there is something wrong with given path.
+	 *
+	 * @param path Path to file which contains list of all words. Method which
+	 *             provides such file is
+	 *             {@link WordExctractor#getAllWords(String, String)}
+	 * @throws IOException If there is something wrong with given path.
 	 */
 	public void createMap(String path) throws IOException {
 		File f = new File(path);
@@ -97,11 +100,9 @@ public class PredataCreator {
 
 	/**
 	 * Method creates list of all posts in given dataset.
-	 * 
-	 * @param dataset
-	 *            Path to dataset in specified format.
-	 * @throws IOException
-	 *             If there is something wrong with given path.
+	 *
+	 * @param dataset Path to dataset in specified format.
+	 * @throws IOException If there is something wrong with given path.
 	 */
 	public void createPostsList(String dataset) throws IOException {
 		File f = new File(dataset);
@@ -111,7 +112,7 @@ public class PredataCreator {
 		boolean isPost = false;
 		Post p = null;
 		StringBuilder sb = null;
-		for (int i = 0; i < size;) {
+		for (int i = 0; i < size; ) {
 			String line = lines.get(i).trim();
 			if (line.startsWith("#####")) {
 				if (isPost) {
@@ -179,12 +180,6 @@ public class PredataCreator {
 			}
 		}
 		return labels;
-	}
-
-	private static boolean isNotRubbish(String w) {
-		Pattern p = Pattern.compile("@?\\p{L}+(\\d+)?|\\d+");
-		Matcher m = p.matcher(w);
-		return m.matches();
 	}
 
 	// standard getters

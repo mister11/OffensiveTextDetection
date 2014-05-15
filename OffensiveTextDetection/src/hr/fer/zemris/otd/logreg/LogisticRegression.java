@@ -12,7 +12,7 @@ public class LogisticRegression {
 	}
 
 	public RealMatrix runGradientDescent(RealMatrix theta, RealMatrix data,
-			RealMatrix labels, double lambda, int iters, boolean cost) {
+										 RealMatrix labels, double lambda, int iters, boolean cost) {
 		// theta = (n+1) x 1
 		// data = m x (n + 1)
 		// labels = m x 1
@@ -47,7 +47,7 @@ public class LogisticRegression {
 	}
 
 	public double getCostFunction(RealMatrix labels, RealMatrix h,
-			double lambda, RealMatrix theta) {
+								  double lambda, RealMatrix theta) {
 		double sumThetaSquared = recalculateTheta(theta);
 		RealMatrix negatedLabels = new Array2DRowRealMatrix(
 				reverseLabels(labels));
@@ -62,7 +62,7 @@ public class LogisticRegression {
 	}
 
 	public double predictAvg(RealMatrix theta, RealMatrix data,
-			RealMatrix labels) {
+							 RealMatrix labels) {
 		int size = data.getRowDimension();
 		int cnt = 0;
 		for (int i = 0; i < size; i++) {

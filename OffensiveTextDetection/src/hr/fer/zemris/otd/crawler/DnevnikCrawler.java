@@ -11,7 +11,7 @@ public class DnevnikCrawler extends AbstractCrawler {
 	private int maxPage;
 
 	public DnevnikCrawler(String initLink, String filePath, String filePrefix,
-			String threadPattern, String postPattern) {
+						  String threadPattern, String postPattern) {
 		super(initLink, filePath, filePrefix, threadPattern, postPattern);
 		this.currPage = 1;
 		this.maxPage = 1;

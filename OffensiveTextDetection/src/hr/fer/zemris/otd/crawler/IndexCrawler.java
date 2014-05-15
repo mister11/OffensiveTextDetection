@@ -3,7 +3,7 @@ package hr.fer.zemris.otd.crawler;
 public class IndexCrawler extends AbstractCrawler {
 
 	public IndexCrawler(String initLink, String filePath, String filePrefix,
-			String threadPattern, String postPattern) {
+						String threadPattern, String postPattern) {
 		super(initLink, filePath, filePrefix, threadPattern, postPattern);
 	}
 
