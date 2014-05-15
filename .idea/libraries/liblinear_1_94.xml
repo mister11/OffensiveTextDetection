@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="liblinear-1.94">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/OffensiveTextDetection/liblinear-1.94.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://D:/Documents/SVEN/FER/Programiranje/liblinear-java-7b6c6a5/src/main/java" />
+      <root url="file://D:/Documents/SVEN/FER/Programiranje/liblinear-java-7b6c6a5/src/test/java" />
+    </SOURCES>
+  </library>
+</component>
