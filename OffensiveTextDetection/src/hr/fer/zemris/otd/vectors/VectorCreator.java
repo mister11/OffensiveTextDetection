@@ -122,7 +122,7 @@ public class VectorCreator {
 		for (; i < size; ) {
 			String[] labels = lines.get(i++).split(",");
 			String[] values = lines.get(i++).split(",");
-			// TODO - if ever is gonna be used, watch out for two types map
+			// TODO - if ever is gonna be used, watch out for two types map (when stemming is performed)
 			PostVector v = new PostVector(labels.length, realMap.size());
 			setLabels(v, labels);
 			setValues(v, values);

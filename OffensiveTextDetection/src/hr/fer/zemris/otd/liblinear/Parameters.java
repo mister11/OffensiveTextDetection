@@ -9,7 +9,7 @@ import de.bwaldvogel.liblinear.SolverType;
 public class Parameters {
 
 	public static Parameter getInitParams() {
-		Parameter params = new Parameter(SolverType.L2R_LR, 1, 0.001);
+		Parameter params = new Parameter(SolverType.L2R_LR, 1, 0.0001);
 		return params;
 	}
 }

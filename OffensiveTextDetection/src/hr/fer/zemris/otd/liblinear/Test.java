@@ -27,32 +27,39 @@ public class Test {
 	private static String postFile = "allPosts.txt";
 	private static String stemmedPosts = "stemmedPosts.txt";
 
+	private static String postFile1 = "C:/Users/Big Sven/Desktop/experiment/lemma/novo_razmaci_bezPraznihLinija.txt";
+	private static String postFile2 = "C:/Users/Big Sven/Desktop/experiment/lemma/real_deal.txt";
+	private static String wordList1 = "C:/Users/Big Sven/Desktop/experiment/lemma/my_word_list.txt";
+	private static String wordList2 = "C:/Users/Big Sven/Desktop/experiment/lemma/my_words.txt";
+
 	public static void main(String[] args) throws IOException {
 		List<PostVector> trainVecs = new ArrayList<>();
 		List<PostVector> testVecs = new ArrayList<>();
 		PredataCreator creator = new PredataCreator();
-		creator.createPostsList("C:/Users/Big Sven/Desktop/experiment/lemma/novo_razmaci_bezPraznihLinija.txt");
+		creator.createPostsList(postFile2);
 		List<Post> allPosts = creator.getPosts();
 
 		IDatasetSplitter splitter = new EqualDatasetSplitter();
 		Pair<List<Post>, List<Post>> dataSets = splitter.createDatasets(
 				allPosts, 0.8);
 		DataManager stemmer = new DataManager();
-		stemmer.writePlainPosts(dataSets.x, directory + postFile);
-		stemmer.stemPosts(directory, "Croatian_stemmer.py", postFile,
-				stemmedPosts);
-		stemmer.createMap(directory + stemmedPosts);
-		// creator.createMapWithMinCount(dataSets.x, 0); //
-		// creator.createMap(outputPath);
+//		stemmer.writePlainPosts(dataSets.x, directory + postFile);
+//		stemmer.stemPosts(directory, "Croatian_stemmer.py", postFile,
+//				stemmedPosts);
+//		stemmer.createMap(directory + stemmedPosts);
+		creator.createMapWithMinCount(dataSets.x, 0); //
+		creator.createMap(wordList2);
+
+
 
 		VectorCreator numericTrainSet = new VectorCreator(
-				stemmer.getStemMapping(), stemmer.getRealMap(), dataSets.x);
+				null, creator.getWordMap(), dataSets.x);
 		trainVecs = numericTrainSet.createOccurrenceVectors();
 		numericTrainSet.nNormalizeVectors(trainVecs);
 		DataProvider trainSet = new DataProvider(trainVecs);
 
 		VectorCreator numericTestSet = new VectorCreator(
-				stemmer.getStemMapping(), stemmer.getRealMap(), dataSets.y);
+				null, creator.getWordMap(), dataSets.y);
 		testVecs = numericTestSet.createOccurrenceVectors();
 		numericTestSet.nNormalizeVectors(testVecs);
 		DataProvider testSet = new DataProvider(testVecs);
@@ -64,6 +71,8 @@ public class Test {
 		problem.n = trainSet.getVectors().get(0).getValues().length;
 		Parameter params = Parameters.getInitParams();
 
+		System.out.println(creator.getWordMap().size());
+		System.out.println(dataSets.x.size() + " " + dataSets.y.size());
 		for (int x = -15; x <= 15; x++) {
 			params.setC(Math.pow(2, x));
 			System.out.println("Start alg");
