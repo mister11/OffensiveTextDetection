@@ -2,9 +2,12 @@ package hr.fer.zemris.otd.naiveBayes;
 
 import hr.fer.zemris.otd.dataPreprocessing.Post;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DataProcessor {
 
@@ -16,6 +19,8 @@ public class DataProcessor {
 
 	public DataProcessor(List<Post> vectors) {
 		this.vectors = vectors;
+		this.positiveSet = new ArrayList<>();
+		this.negativeSet = new ArrayList<>();
 		this.words = new HashSet<>();
 		setPosAndNeg();
 	}
@@ -32,7 +37,13 @@ public class DataProcessor {
 	public int getPositiveWordsNum() {
 		int cnt = 0;
 		for (Post p : positiveSet) {
-			cnt += p.getPostText().split("\\p{Z}").length;
+			for (String word : p.getPostText().split("\\p{Z}")) {
+				String w = word.trim().toLowerCase();
+				if (!isNotRubbish(w)) {
+					continue;
+				}
+				cnt++;
+			}
 		}
 		return cnt;
 	}
@@ -40,7 +51,13 @@ public class DataProcessor {
 	public int getNegativeWordsNum() {
 		int cnt = 0;
 		for (Post p : negativeSet) {
-			cnt += p.getPostText().split("\\p{Z}").length;
+			for(String word : p.getPostText().split("\\p{Z}")) {
+				String w = word.trim().toLowerCase();
+				if(!isNotRubbish(w)) {
+					continue;
+				}
+				cnt++;
+			}
 		}
 		return cnt;
 	}
@@ -57,7 +74,11 @@ public class DataProcessor {
 		int cnt = 0;
 		for (Post p : negativeSet) {
 			for (String w : p.getPostText().split("\\p{Z}")) {
-				if (word.equals(w)) {
+				if (!isNotRubbish(w)) {
+					continue;
+				}
+				String ww = w.trim().toLowerCase();
+				if (word.equals(ww)) {
 					cnt++;
 				}
 			}
@@ -69,7 +90,11 @@ public class DataProcessor {
 		int cnt = 0;
 		for (Post p : positiveSet) {
 			for (String w : p.getPostText().split("\\p{Z}")) {
-				if (word.equals(w)) {
+				if(!isNotRubbish(w)) {
+					continue;
+				}
+				String ww = w.trim().toLowerCase();
+				if (word.equals(ww)) {
 					cnt++;
 				}
 			}
@@ -79,8 +104,9 @@ public class DataProcessor {
 
 	private void addToWords(String postText) {
 		for (String word : postText.split("\\p{Z}")) {
-			if (!words.contains(word)) {
-				words.add(word);
+			String w = word.trim().toLowerCase();
+			if (!words.contains(w) && isNotRubbish(w)) {
+				words.add(w);
 			}
 		}
 	}
@@ -94,6 +120,13 @@ public class DataProcessor {
 				positiveSet.add(p);
 			}
 		}
+	}
+
+	public boolean isNotRubbish(String w) {
+		//Pattern p = Pattern.compile("@?\\p{L}+(\\d+)?|\\d+");
+		Pattern p = Pattern.compile("@?\\p{L}+.*");
+		Matcher m = p.matcher(w);
+		return m.matches();
 	}
 
 	public int totalSize() {

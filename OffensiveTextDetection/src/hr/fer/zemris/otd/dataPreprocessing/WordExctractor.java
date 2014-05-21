@@ -51,7 +51,7 @@ public class WordExctractor {
 	 * otherwise
 	 */
 	private static boolean isNotRubbish(String w) {
-		Pattern p = Pattern.compile("@?\\p{L}+(\\d+)?|\\d+");
+		Pattern p = Pattern.compile("@?\\p{L}+.*");
 		Matcher m = p.matcher(w);
 		return m.matches();
 	}

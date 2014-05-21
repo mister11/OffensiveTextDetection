@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/OffensiveTextDetection/OffensiveTextDetection.iml" filepath="$PROJECT_DIR$/OffensiveTextDetection/OffensiveTextDetection.iml" />
+      <module fileurl="file://D:/Documents/SVEN/FER/Programiranje/Python/ZRScripts/ZRScripts.iml" filepath="D:/Documents/SVEN/FER/Programiranje/Python/ZRScripts/ZRScripts.iml" />
     </modules>
   </component>
 </project>

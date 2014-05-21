@@ -22,5 +22,6 @@
 	<classpathentry kind="lib" path="crawlerdep/httpcore-4.3.2.jar"/>
 	<classpathentry kind="lib" path="crawlerdep/commons-math3-3.2.jar" sourcepath="D:/Documents/SVEN/FER/3.godina-2.semestar/Interaktivna računalna grafika/Labosi/commons-math3-3.2/commons-math3-3.2-sources.jar"/>
 	<classpathentry kind="lib" path="libsvm.jar" sourcepath="D:/Documents/SVEN/FER/Programiranje/libsvm-3.17/java"/>
+	<classpathentry kind="lib" path="liblinear-1.94.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

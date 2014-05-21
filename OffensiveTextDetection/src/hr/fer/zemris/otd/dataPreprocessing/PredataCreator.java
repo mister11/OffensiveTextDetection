@@ -26,12 +26,13 @@ public class PredataCreator {
 	private List<Post> posts;
 
 	public PredataCreator() {
-		wordMap = new HashMap<String, Integer>();
+		wordMap = new HashMap<>();
 		posts = new ArrayList<>();
 	}
 
 	private static boolean isNotRubbish(String w) {
-		Pattern p = Pattern.compile("@?\\p{L}+(\\d+)?|\\d+");
+		//Pattern p = Pattern.compile("@?\\p{L}+(\\d+)?|\\d+");
+		Pattern p = Pattern.compile("@?\\p{L}+.*");
 		Matcher m = p.matcher(w);
 		return m.matches();
 	}
@@ -62,6 +63,9 @@ public class PredataCreator {
 		for (Post p : posts) {
 			for (String w : p.getPostText().split("\\p{Z}")) {
 				String word = w.trim().toLowerCase();
+				if(!isNotRubbish(word)) {
+					continue;
+				}
 				if (!isNotRubbish(word) || this.wordMap.containsKey(word)) {
 					continue;
 				}

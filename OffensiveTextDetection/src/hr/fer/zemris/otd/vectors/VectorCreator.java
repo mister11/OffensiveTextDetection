@@ -70,6 +70,10 @@ public class VectorCreator {
 		for (int i = 0; i < listSize; i++) {
 			PostVector v = vectors.get(i);
 			for (int j = 0; j < vectorSize; j++) {
+				if(maxValues[j] == 0) {
+					v.setValue(j, 0); //just to be sure...
+					continue;
+				}
 				double oldValue = v.getValue(j);
 				v.setValue(j, oldValue / maxValues[j]);
 			}
@@ -290,7 +294,7 @@ public class VectorCreator {
 	}
 
 	private boolean isNotRubbish(String w) {
-		Pattern p = Pattern.compile("@?\\p{L}+(\\d+)?|\\d+");
+		Pattern p = Pattern.compile("@?\\p{L}+.*");
 		Matcher m = p.matcher(w);
 		return m.matches();
 	}

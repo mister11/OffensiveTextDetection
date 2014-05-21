@@ -1,5 +1,6 @@
 package hr.fer.zemris.otd.utils;
 
+import hr.fer.zemris.otd.dataPreprocessing.Post;
 import hr.fer.zemris.otd.vectors.PostVector;
 import org.apache.commons.math3.linear.RealMatrix;
 
@@ -19,6 +20,35 @@ public class Deserialize {
 			@SuppressWarnings("unchecked")
 			List<PostVector> vectors = (List<PostVector>) ois.readObject();
 			return vectors;
+		} catch (IOException | ClassNotFoundException ex) {
+			return null;
+		} finally {
+			if (fis1 != null) {
+				try {
+					fis1.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			if (ois != null) {
+				try {
+					ois.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	public static List<Post> listPosts(String name) {
+		FileInputStream fis1 = null;
+		ObjectInputStream ois = null;
+		try {
+			fis1 = new FileInputStream(name);
+			ois = new ObjectInputStream(fis1);
+			@SuppressWarnings("unchecked")
+			List<Post> posts = (List<Post>) ois.readObject();
+			return posts;
 		} catch (IOException | ClassNotFoundException ex) {
 			return null;
 		} finally {
