@@ -4,18 +4,21 @@
     <bookmark url="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/liblinear/Test.java" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="aef32c5c-9708-4580-a767-7ac07ab47021" name="Default" comment="Not too much done... Just to keep it up-to-date">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/naiveBayes/Test.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OffensiveTextDetection/.classpath" afterPath="$PROJECT_DIR$/OffensiveTextDetection/.classpath" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/naiveBayes/DataProcessor.java" afterPath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/naiveBayes/DataProcessor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/utils/Deserialize.java" afterPath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/utils/Deserialize.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/dataPreprocessing/PredataCreator.java" afterPath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/dataPreprocessing/PredataCreator.java" />
+    <list default="true" id="aef32c5c-9708-4580-a767-7ac07ab47021" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/temp/ArtPostsCreator.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/findbugs-idea.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/liblinear/DataProvider.java" afterPath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/liblinear/DataProvider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/vectors/EqualDatasetSplitter.java" afterPath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/vectors/EqualDatasetSplitter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/vectors/IDatasetSplitter.java" afterPath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/vectors/IDatasetSplitter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OffensiveTextDetection/OffensiveTextDetection.iml" afterPath="$PROJECT_DIR$/OffensiveTextDetection/OffensiveTextDetection.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/naiveBayes/ProbabilityCalculator.java" afterPath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/naiveBayes/ProbabilityCalculator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/vectors/SimpleDatasetSplitter.java" afterPath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/vectors/SimpleDatasetSplitter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/liblinear/Test.java" afterPath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/liblinear/Test.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/logreg/Test.java" afterPath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/logreg/Test.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/naiveBayes/Test.java" afterPath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/naiveBayes/Test.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/svm/Test.java" afterPath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/svm/Test.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/vectors/VectorCreator.java" afterPath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/vectors/VectorCreator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/dataPreprocessing/WordExctractor.java" afterPath="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/dataPreprocessing/WordExctractor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="OffensiveTextDetection.iws" />
@@ -38,75 +41,7 @@
     <favorites_list name="OffensiveTextDetection" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="Test.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/naiveBayes/Test.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="237" max-vertical-offset="720">
-              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Test.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/liblinear/Test.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="324" max-vertical-offset="2916">
-              <caret line="81" column="18" selection-start-line="81" selection-start-column="18" selection-end-line="81" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProbabilityCalculator.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/naiveBayes/ProbabilityCalculator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.67701864" vertical-offset="705" max-vertical-offset="1188">
-              <caret line="21" column="50" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DataProcessor.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/naiveBayes/DataProcessor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="2466">
-              <caret line="107" column="46" selection-start-line="107" selection-start-column="46" selection-end-line="107" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="clean.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://D:/Documents/SVEN/FER/Programiranje/Python/ZRScripts/clean.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="324">
-              <caret line="13" column="33" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PredataCreator.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/dataPreprocessing/PredataCreator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="3474">
-              <caret line="28" column="30" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
-              <folding>
-                <element signature="e#4914#4915#0" expanded="true" />
-                <element signature="e#4935#4936#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -119,24 +54,28 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/liblinear/DataProvider.java" />
-        <option value="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/svm/Test.java" />
         <option value="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/liblinear/Parameters.java" />
         <option value="D:/Documents/SVEN/FER/Programiranje/Python/ZRScripts/remove_not_words.py" />
         <option value="D:/Documents/SVEN/FER/Programiranje/Python/ZRScripts/remove_empty.py" />
         <option value="D:/Documents/SVEN/FER/Programiranje/Python/ZRScripts/remove_all_but_posts.py" />
         <option value="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/dataPreprocessing/Test.java" />
         <option value="D:/Documents/SVEN/FER/Programiranje/Python/ZRScripts/clean_output.py" />
-        <option value="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/vectors/EqualDatasetSplitter.java" />
         <option value="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/utils/Deserialize.java" />
         <option value="D:/Documents/SVEN/FER/Programiranje/Python/ZRScripts/clean.py" />
         <option value="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/dataPreprocessing/WordExctractor.java" />
-        <option value="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/vectors/VectorCreator.java" />
-        <option value="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/naiveBayes/Test.java" />
-        <option value="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/liblinear/Test.java" />
         <option value="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/naiveBayes/DataProcessor.java" />
-        <option value="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/naiveBayes/ProbabilityCalculator.java" />
         <option value="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/dataPreprocessing/PredataCreator.java" />
+        <option value="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/liblinear/DataProvider.java" />
+        <option value="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/vectors/EqualDatasetSplitter.java" />
+        <option value="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/vectors/IDatasetSplitter.java" />
+        <option value="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/vectors/SimpleDatasetSplitter.java" />
+        <option value="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/logreg/Test.java" />
+        <option value="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/vectors/VectorCreator.java" />
+        <option value="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/temp/ArtPostsCreator.java" />
+        <option value="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/naiveBayes/Test.java" />
+        <option value="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/naiveBayes/ProbabilityCalculator.java" />
+        <option value="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/svm/Test.java" />
+        <option value="$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/liblinear/Test.java" />
       </list>
     </option>
   </component>
@@ -422,7 +361,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -437,22 +375,13 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="ZRScripts" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OffensiveTextDetection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="OffensiveTextDetection" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -468,7 +397,7 @@
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="FullScreen" value="false" />
@@ -489,29 +418,7 @@
       <recent name="D:\mister11\OffensiveTextDetection\OffensiveTextDetection" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Test (3)">
-    <configuration default="false" name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="hr.fer.zemris.otd.logreg.Test" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="OffensiveTextDetection" />
-      <envs />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Debug" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Application.Test (1)">
     <configuration default="false" name="Test (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="hr.fer.zemris.otd.liblinear.Test" />
       <option name="VM_PARAMETERS" />
@@ -570,6 +477,28 @@
     </configuration>
     <configuration default="false" name="Test (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="hr.fer.zemris.otd.naiveBayes.Test" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="OffensiveTextDetection" />
+      <envs />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Test (4)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="hr.fer.zemris.otd.svm.Test" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -880,19 +809,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Application.Test" />
-      <item index="1" class="java.lang.String" itemvalue="Application.Test (1)" />
-      <item index="2" class="java.lang.String" itemvalue="Python.clean" />
-      <item index="3" class="java.lang.String" itemvalue="Application.Test (2)" />
-      <item index="4" class="java.lang.String" itemvalue="Application.Test (3)" />
+      <item index="0" class="java.lang.String" itemvalue="Application.Test (1)" />
+      <item index="1" class="java.lang.String" itemvalue="Python.clean" />
+      <item index="2" class="java.lang.String" itemvalue="Application.Test (2)" />
+      <item index="3" class="java.lang.String" itemvalue="Application.Test (3)" />
+      <item index="4" class="java.lang.String" itemvalue="Application.Test (4)" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.Test (3)" />
-        <item index="1" class="java.lang.String" itemvalue="Application.Test (1)" />
-        <item index="2" class="java.lang.String" itemvalue="Application.Test (2)" />
-        <item index="3" class="java.lang.String" itemvalue="Python.clean" />
-        <item index="4" class="java.lang.String" itemvalue="Application.Test" />
+        <item index="0" class="java.lang.String" itemvalue="Application.Test (1)" />
+        <item index="1" class="java.lang.String" itemvalue="Application.Test (4)" />
+        <item index="2" class="java.lang.String" itemvalue="Application.Test (3)" />
+        <item index="3" class="java.lang.String" itemvalue="Application.Test (2)" />
+        <item index="4" class="java.lang.String" itemvalue="Python.clean" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -918,7 +847,11 @@
       <created>1400280589452</created>
       <updated>1400280589452</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fixed bugs, test class for NB">
+      <created>1400682367946</created>
+      <updated>1400682367946</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -951,18 +884,19 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32694355" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.46881497" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.45010394" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="FindBugs-IDEA" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3258786" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26163724" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.10572917" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44282743" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.108333334" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47193348" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952183" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1012,7 +946,8 @@
     </option>
     <MESSAGE value="Added liblinear log. reg. implementation" />
     <MESSAGE value="Not too much done... Just to keep it up-to-date" />
-    <option name="LAST_COMMIT_MESSAGE" value="Not too much done... Just to keep it up-to-date" />
+    <MESSAGE value="fixed bugs, test class for NB" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed bugs, test class for NB" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1030,20 +965,38 @@
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/liblinear/Test.java</url>
-          <line>71</line>
-          <properties />
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <condition expression="post.getLabel(0) == '1'&#13;&#13;JAVA" />
           <url>file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/naiveBayes/Test.java</url>
           <line>22</line>
           <properties />
           <option name="timeStamp" value="37" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/liblinear/Test.java</url>
+          <line>120</line>
+          <properties />
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/liblinear/Test.java</url>
+          <line>108</line>
+          <properties />
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/liblinear/DataProvider.java</url>
+          <line>36</line>
+          <properties />
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/liblinear/Test.java</url>
+          <line>51</line>
+          <properties />
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="38" />
+      <option name="time" value="58" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -1051,48 +1004,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/vectors/PostVector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="108" max-vertical-offset="810">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/vectors/VectorCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4318" max-vertical-offset="5256">
-          <caret line="279" column="38" selection-start-line="279" selection-start-column="38" selection-end-line="279" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/svm/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="273" max-vertical-offset="2160">
-          <caret line="37" column="54" selection-start-line="37" selection-start-column="54" selection-end-line="37" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/svm/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2160">
-          <caret line="36" column="50" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/Documents/SVEN/FER/Programiranje/libsvm-3.17/java/libsvm/svm_problem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.032667875" vertical-offset="0" max-vertical-offset="551">
-          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/OffensiveTextDetection/liblinear-1.94.jar!/de/bwaldvogel/liblinear/ArraySorter.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17110266" vertical-offset="0" max-vertical-offset="526">
-          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/OffensiveTextDetection/liblinear-1.94.jar!/de/bwaldvogel/liblinear/L2R_L2_SvcFunction.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.041825093" vertical-offset="68" max-vertical-offset="594">
@@ -1171,27 +1082,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/svm/Parameters.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="414">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/svm/PreprocessData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1008">
-          <caret line="21" column="24" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/svm/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1321" max-vertical-offset="2124">
-          <caret line="101" column="34" selection-start-line="101" selection-start-column="34" selection-end-line="101" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/OffensiveTextDetection/liblinear-1.94.jar!/de/bwaldvogel/liblinear/InvalidInputDataException.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.13232104" vertical-offset="151" max-vertical-offset="612">
@@ -1248,13 +1138,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/liblinear/Parameters.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2113127" vertical-offset="0" max-vertical-offset="937">
-          <caret line="11" column="69" selection-start-line="11" selection-start-column="69" selection-end-line="11" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/Documents/SVEN/FER/Programiranje/Python/ZRScripts/remove_empty.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.13399504" vertical-offset="0" max-vertical-offset="806">
@@ -1297,40 +1180,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/vectors/IDatasetSplitter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17088607" vertical-offset="0" max-vertical-offset="632">
-          <caret line="9" column="33" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/dataPreprocessing/Test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.3417722" vertical-offset="16" max-vertical-offset="1026">
           <caret line="48" column="50" selection-start-line="48" selection-start-column="50" selection-end-line="48" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/logreg/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="131" max-vertical-offset="1872">
-          <caret line="30" column="90" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="90" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/vectors/PostVector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11563169" vertical-offset="0" max-vertical-offset="934">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/vectors/EqualDatasetSplitter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.05567452" vertical-offset="254" max-vertical-offset="1188">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1348,79 +1201,182 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/vectors/VectorCreator.java">
+    <entry file="file://D:/Documents/SVEN/FER/Programiranje/Python/ZRScripts/clean.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="5328">
-          <caret line="73" column="58" selection-start-line="73" selection-start-column="58" selection-end-line="73" selection-end-column="58" />
+        <state vertical-scroll-proportion="0.25053534" vertical-offset="0" max-vertical-offset="934">
+          <caret line="13" column="33" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/dataPreprocessing/Post.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="792">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://D:/Documents/SVEN/FER/Programiranje/liblinear-java-7b6c6a5/src/main/java/de/bwaldvogel/liblinear/Problem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2" vertical-offset="639" max-vertical-offset="1134">
-          <caret line="42" column="23" selection-start-line="42" selection-start-column="23" selection-end-line="42" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="467" max-vertical-offset="1134">
+          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/liblinear/DataProvider.java">
+    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/utils/Pair.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.09421842" vertical-offset="254" max-vertical-offset="1188">
-          <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="396">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/liblinear/Test.java">
+    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/vectors/PostVector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="324" max-vertical-offset="2916">
-          <caret line="81" column="18" selection-start-line="81" selection-start-column="18" selection-end-line="81" selection-end-column="18" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="168" max-vertical-offset="666">
+          <caret line="34" column="16" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/dataPreprocessing/PredataCreator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="3474">
-          <caret line="28" column="30" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="878" max-vertical-offset="3438">
+          <caret line="76" column="16" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/vectors/IDatasetSplitter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.19271949" vertical-offset="0" max-vertical-offset="934">
+          <caret line="10" column="76" selection-start-line="10" selection-start-column="76" selection-end-line="10" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/vectors/SimpleDatasetSplitter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23126338" vertical-offset="0" max-vertical-offset="934">
+          <caret line="12" column="99" selection-start-line="12" selection-start-column="99" selection-end-line="12" selection-end-column="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/vectors/EqualDatasetSplitter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.14827017" vertical-offset="162" max-vertical-offset="1098">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/vectors/VectorCreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5403624" vertical-offset="2606" max-vertical-offset="5850">
+          <caret line="173" column="74" selection-start-line="173" selection-start-column="74" selection-end-line="173" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/crossValidation/CrossValidation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.113490365" vertical-offset="20" max-vertical-offset="954">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/liblinear/Parameters.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21199143" vertical-offset="0" max-vertical-offset="934">
+          <caret line="11" column="54" selection-start-line="11" selection-start-column="54" selection-end-line="11" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/logreg/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="915" max-vertical-offset="1872">
+          <caret line="43" column="32" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/liblinear/DataProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2098501" vertical-offset="74" max-vertical-offset="1008">
+          <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/temp/ArtPostsCreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="293" max-vertical-offset="1260">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding>
-            <element signature="e#4914#4915#0" expanded="true" />
-            <element signature="e#4935#4936#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/Documents/SVEN/FER/Programiranje/Python/ZRScripts/clean.py">
+    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/naiveBayes/Test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="324">
-          <caret line="13" column="33" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="108" max-vertical-offset="648">
+          <caret line="24" column="65" selection-start-line="24" selection-start-column="65" selection-end-line="24" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/svm/Parameters.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="414">
+          <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/svm/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1914" max-vertical-offset="2394">
+          <caret line="103" column="33" selection-start-line="103" selection-start-column="33" selection-end-line="103" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/artif_test_posts.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="501">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/liblinear/Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2083" max-vertical-offset="3078">
+          <caret line="61" column="34" selection-start-line="61" selection-start-column="34" selection-end-line="61" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/svm/PreprocessData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="1008">
+          <caret line="21" column="24" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/naiveBayes/ProbabilityCalculator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="312" max-vertical-offset="1170">
+          <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/naiveBayes/DataProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1983" max-vertical-offset="2466">
-          <caret line="107" column="46" selection-start-line="107" selection-start-column="46" selection-end-line="107" selection-end-column="46" />
+        <state vertical-scroll-proportion="4.311377" vertical-offset="0" max-vertical-offset="2466">
+          <caret line="127" column="33" selection-start-line="127" selection-start-column="33" selection-end-line="127" selection-end-column="33" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/naiveBayes/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="237" max-vertical-offset="720">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OffensiveTextDetection/src/hr/fer/zemris/otd/naiveBayes/ProbabilityCalculator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.67701864" vertical-offset="705" max-vertical-offset="1188">
-          <caret line="21" column="50" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1453,6 +1409,7 @@
       </state>
       <state key="GlobalLibrariesConfigurable.UI">
         <settings>
+          <last-edited>Python 3.4.0 (C:\Python34\python.exe) interpreter library</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

@@ -30,7 +30,7 @@ public class ProbabilityCalculator {
 		if(!data.isNotRubbish(w)) {
 			return 1.0;
 		}
-		return this.positiveProb.getOrDefault(w, 1.0 / (posCount + vocabSize));
+		return this.positiveProb.getOrDefault(w, Double.valueOf(1.0 / (posCount + vocabSize)));
 	}
 
 	public double getNegativeProb(String word) {
@@ -38,7 +38,7 @@ public class ProbabilityCalculator {
 		if (!data.isNotRubbish(w)) {
 			return 1.0;
 		}
-		return this.negativeProb.getOrDefault(w, 1.0 / (posCount + vocabSize));
+		return this.negativeProb.getOrDefault(w, Double.valueOf(1.0 / (posCount + vocabSize)));
 	}
 
 	public double getPosClassProbab() {

@@ -41,7 +41,7 @@ public class Test {
 
 		IDatasetSplitter splitter = new EqualDatasetSplitter();
 		Pair<List<Post>, List<Post>> dataSets = splitter.createDatasets(
-				allPosts, 0.8);
+				allPosts, 0.8, 1);
 		DataManager stemmer = new DataManager();
 		stemmer.writePlainPosts(dataSets.x, directory + postFile);
 		stemmer.stemPosts(directory, "Croatian_stemmer.py", postFile,

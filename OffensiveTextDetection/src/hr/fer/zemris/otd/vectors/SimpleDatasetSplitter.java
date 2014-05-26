@@ -9,9 +9,14 @@ import java.util.List;
 
 public class SimpleDatasetSplitter implements IDatasetSplitter {
 
+	/**
+	 * Does not use label variable because it just takes first percetange * size post to train set.
+	 */
+
 	@Override
 	public Pair<List<Post>, List<Post>> createDatasets(List<Post> vectors,
-													   double percentage) {
+													   double percentage, int label) {
+
 		Collections.shuffle(vectors);
 		int trainSetSize = (int) (vectors.size() * percentage);
 		List<Post> trainSet = new ArrayList<>();

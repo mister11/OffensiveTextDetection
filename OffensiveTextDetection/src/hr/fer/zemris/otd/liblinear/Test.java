@@ -1,10 +1,7 @@
 package hr.fer.zemris.otd.liblinear;
 
 
-import de.bwaldvogel.liblinear.Feature;
-import de.bwaldvogel.liblinear.FeatureNode;
-import de.bwaldvogel.liblinear.Parameter;
-import de.bwaldvogel.liblinear.Problem;
+import de.bwaldvogel.liblinear.*;
 import hr.fer.zemris.otd.dataPreprocessing.Post;
 import hr.fer.zemris.otd.dataPreprocessing.PredataCreator;
 import hr.fer.zemris.otd.stemming.DataManager;
@@ -30,23 +27,27 @@ public class Test {
 	private static String wordList1 = "C:/Users/Big Sven/Desktop/experiment/lemma/my_word_list.txt";
 	private static String wordList2 = "C:/Users/Big Sven/Desktop/experiment/lemma/my_words.txt";
 
+	private static int label = 0;
+
 	public static void main(String[] args) throws IOException {
-		List<PostVector> trainVecs;
-		List<PostVector> testVecs;
+
 		PredataCreator creator = new PredataCreator();
 //		creator.createPostsList(postFile2);
-//		List<Post> allPosts = creator.getPosts();
+//		ArtPostsCreator artPostsCreator = new ArtPostsCreator();
+//		List<Post> allPosts = artPostsCreator.getArtificalPosts("C:/Users/Big Sven/Desktop/experiment/lemma/art_wordMap.txt");
+//
 //
 //		IDatasetSplitter splitter = new EqualDatasetSplitter();
-//		Pair<List<Post>, List<Post>> dataSets = splitter.createDatasets(
-//				allPosts, 0.8);
 //
-//		Serialize.object(dataSets.x, "trainSet.ser");
-//		Serialize.object(dataSets.y, "testSet.ser");
+//		Pair<List<Post>, List<Post>> dataSets = splitter.createDatasets(
+//				allPosts, 0.8, label);
+//
+//		Serialize.object(dataSets.x, "trainSetArt.ser");
+//		Serialize.object(dataSets.y, "testSetArt.ser");
 
 
-		List<Post> trainPosts = Deserialize.listPosts("trainSet.ser");
-		List<Post> testPosts = Deserialize.listPosts("testSet.ser");
+		List<Post> trainPosts = Deserialize.listPosts("trainSetArt.ser");
+		List<Post> testPosts = Deserialize.listPosts("testSetArt.ser");
 
 		DataManager stemmer = new DataManager();
 //		stemmer.writePlainPosts(dataSets.x, directory + postFile);
@@ -54,31 +55,35 @@ public class Test {
 //				stemmedPosts);
 //		stemmer.createMap(directory + stemmedPosts);
 		creator.createMapWithMinCount(trainPosts, 0);
+		//creator.createMap(wordList2);
 
-	//creator.createMap(wordList2);
 
-
+		List<PostVector> trainVecs;
+		List<PostVector> testVecs;
 
 		VectorCreator numericTrainSet = new VectorCreator(
 				null, creator.getWordMap(), trainPosts);
 		trainVecs = numericTrainSet.createOccurrenceVectors();
-		//numericTrainSet.normalizeVectors(trainVecs);
+		numericTrainSet.normalizeVectors(trainVecs);
 		DataProvider trainSet = new DataProvider(trainVecs);
 
 		VectorCreator numericTestSet = new VectorCreator(
 				null, creator.getWordMap(), testPosts);
 		testVecs = numericTestSet.createOccurrenceVectors();
-		//numericTestSet.normalizeVectors(testVecs);
+		numericTestSet.normalizeVectors(testVecs);
 		DataProvider testSet = new DataProvider(testVecs);
 
 
-//		FileWriter fw1 = new FileWriter("trainVecs.txt");
-//		FileWriter fw2 = new FileWriter("testVecs.txt");
+//		FileWriter fw1 = new FileWriter("trainVecsRude.txt");
+//		FileWriter fw2 = new FileWriter("testVecsRude.txt");
 //		for(PostVector v : trainVecs) {
 //			int index = 1;
 //			char[] labels = v.getLabels();
 //			fw1.append(labels[0] + " ");
 //			for(Double val : v.getValues()) {
+//				if(Double.compare(val, 0.0) == 0) {
+//					continue;
+//				}
 //				fw1.append(index + ":" + val + " ");
 //				index++;
 //			}
@@ -91,6 +96,9 @@ public class Test {
 //			char[] labels = v.getLabels();
 //			fw2.append(labels[0] + " ");
 //			for (Double val : v.getValues()) {
+//				if (Double.compare(val, 0.0) == 0) {
+//					continue;
+//				}
 //				fw2.append(index + ":" + val + " ");
 //				index++;
 //			}
@@ -100,7 +108,7 @@ public class Test {
 
 		Problem problem = new Problem();
 		problem.l = trainSet.numOfTrainData();
-		problem.y = trainSet.getLabels();
+		problem.y = trainSet.getLabels(label);
 		problem.x = trainSet.getNodes();
 		problem.n = trainSet.getVectors().get(0).getValues().length;
 		Parameter params = Parameters.getInitParams();
@@ -109,20 +117,18 @@ public class Test {
 		/**
 		 * Training... at the moment it looks like CV but i was just experimenting
 		 */
-//		for(int x = -15; x <= 15; x++) {
-//			params.setC(Math.pow(2, x));
-//			Model model = Linear.train(problem, params);
-//
-//			int cnt = 0;
-//			for (PostVector v : testSet.getVectors()) {
-//				Feature[] vector = getFeature(v);
-//				int label = Integer.valueOf(String.valueOf(v.getLabel(0)));
-//				int prediction = (int) Linear.predict(model, vector);
-//				if (label == prediction) cnt++;
-//			}
-//
-//			System.out.println("For C = " + params.getC() + " accuracy is: " + 1.0 * cnt / testPosts.size());
-//		}
+		for (int x = -15; x <= 15; x++) {
+			params.setC(Math.pow(2, x));
+			Model model = Linear.train(problem, params);
+			int cnt = 0;
+			for (PostVector v : testSet.getVectors()) {
+				Feature[] vector = getFeature(v);
+				int realLabel = Integer.valueOf(String.valueOf(v.getLabel(label)));
+				int prediction = (int) Linear.predict(model, vector);
+				if (realLabel == prediction) cnt++;
+			}
+			System.out.println("For C = " + params.getC() + " accuracy is: " + 1.0 * cnt / testPosts.size());
+		}
 
 
 		/**
@@ -158,7 +164,7 @@ public class Test {
 	private static Feature[] getFeature(PostVector v) {
 		Feature[] vecs = new Feature[v.getValues().length];
 		int index = 1;
-		for(double d : v.getValues()) {
+		for (double d : v.getValues()) {
 			Feature f = new FeatureNode(index, d);
 			vecs[index - 1] = f;
 			index++;

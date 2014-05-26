@@ -1,16 +1,14 @@
 package hr.fer.zemris.otd.vectors;
 
 import hr.fer.zemris.otd.dataPreprocessing.Post;
+import hr.fer.zemris.otd.utils.Pair;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -64,7 +62,9 @@ public class VectorCreator {
 	}
 
 	public void normalizeVectors(List<PostVector> vectors) {
-		double[] maxValues = getMaxValues(vectors);
+		Pair<Double[], Double[]> minAndMax = getMinAndMax(vectors);
+		Double[] minValues = minAndMax.x;
+		Double[] maxValues = minAndMax.y;
 		int listSize = vectors.size();
 		int vectorSize = maxValues.length;
 		for (int i = 0; i < listSize; i++) {
@@ -75,14 +75,17 @@ public class VectorCreator {
 					continue;
 				}
 				double oldValue = v.getValue(j);
-				v.setValue(j, oldValue / maxValues[j]);
+				double value = (oldValue - minValues[j]) / (maxValues[j] - minValues[j]);
+				v.setValue(j, value);
 			}
 		}
 	}
 
 	public List<PostVector> nNormalizeVectors(List<PostVector> vectors) {
 		List<PostVector> postVectors = new ArrayList<>();
-		double[] maxValues = getMaxValues(vectors);
+		Pair<Double[], Double[]> minAndMax = getMinAndMax(vectors);
+		Double[] minValues = minAndMax.x;
+		Double[] maxValues = minAndMax.y;
 		int listSize = vectors.size();
 		int vectorSize = maxValues.length;
 		for (int i = 0; i < listSize; i++) {
@@ -92,7 +95,8 @@ public class VectorCreator {
 			newVector.setLabels(v.getLabels());
 			for (int j = 0; j < vectorSize; j++) {
 				double oldValue = v.getValue(j);
-				newVector.setValue(j, oldValue / maxValues[j]);
+				double value = (oldValue - minValues[j]) / (maxValues[j] - minValues[j]);
+				newVector.setValue(j, value);
 			}
 			postVectors.add(newVector);
 		}
@@ -159,19 +163,42 @@ public class VectorCreator {
 		}
 	}
 
-	private double[] getMaxValues(List<PostVector> vectors) {
+
+	private Pair<Double[], Double[]> getMinAndMax(List<PostVector> vectors) {
+		Double[] minValues = new Double[vectors.get(0).getValues().length];
+		Double[] maxValues = new Double[vectors.get(0).getValues().length];
+		int vectorSize = minValues.length;
+		for (int j = 0; j < vectorSize; j++) {
+			final int index = j;
+			minValues[j] = vectors.stream().mapToDouble(vec -> vec.getValue(index)).min().getAsDouble();
+			maxValues[j] = vectors.stream().mapToDouble(vec -> vec.getValue(index)).max().getAsDouble();
+		}
+		return new Pair<>(minValues, maxValues);
+	}
+
+	//not used...replaced with above function
+	/* private double[] getMaxValues(List<PostVector> vectors) {
 		double[] maxValues = new double[vectors.get(0).getValues().length];
 		int listSize = vectors.size();
 		int vectorSize = maxValues.length;
 		for (int j = 0; j < vectorSize; j++) {
-			double maxValue = 0;
-			for (int i = 0; i < listSize; i++) {
-				maxValue = Math.max(maxValue, vectors.get(i).getValue(j));
-			}
-			maxValues[j] = maxValue;
+			final int index = j;
+			OptionalDouble maxValue = vectors.stream().mapToDouble(vec -> vec.getValue(index)).max();
+			maxValues[j] = maxValue.getAsDouble();
 		}
 		return maxValues;
 	}
+
+	private double[] getMinValues(List<PostVector> vectors) {
+		double[] minValues = new double[vectors.get(0).getValues().length];
+		int vectorSize = minValues.length;
+		for (int j = 0; j < vectorSize; j++) {
+			final int index = j;
+			OptionalDouble minValue = vectors.stream().mapToDouble(vec -> vec.getValue(index)).min();
+			minValues[j] = minValue.getAsDouble();
+		}
+		return minValues;
+	}*/
 
 	private void writeValues(FileWriter fw, double[] values) throws IOException {
 		for (Double v : values) {

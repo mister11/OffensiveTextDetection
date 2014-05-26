@@ -37,12 +37,12 @@ public class DataProvider {
 		return nodes;
 	}
 
-	public double[] getLabels() {
+	public double[] getLabels(int label) {
 		double[] labels = new double[this.vectors.size()];
 		int i = 0;
 		for (PostVector v : vectors) {
 			char[] vLabels = v.getLabels();
-			labels[i++] = Double.valueOf(String.valueOf(vLabels[0]));
+			labels[i++] = Double.valueOf(String.valueOf(vLabels[label]));
 		}
 		return labels;
 	}
