@@ -258,7 +258,7 @@ public class VectorCreator {
 		}
 		int numberOfPost = posts.size();
 		for (String stem : realMap.keySet()) {
-			double tfidf = 0.0;
+			double tfidf;
 			double log = Math.log(1.0 * numberOfPost / stemPostWord.get(stem));
 			tfidf = 1.0 * stemWordPost.get(stem) * log;
 			postVector.setValue(realMap.get(stem), tfidf);

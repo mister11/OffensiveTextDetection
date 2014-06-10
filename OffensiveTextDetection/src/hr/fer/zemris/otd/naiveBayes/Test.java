@@ -12,13 +12,18 @@ import java.util.List;
 public class Test {
 
 	public static void main(String[] args) {
-		List<Post> trainPosts = Deserialize.listPosts("trainSetArt.ser");
-		List<Post> testPosts = Deserialize.listPosts("testSetArt.ser");
+		List<Post> trainPosts = Deserialize.listPosts("trainSet.ser");
+		List<Post> testPosts = Deserialize.listPosts("testSet.ser");
 
 		DataProcessor dp = new DataProcessor(trainPosts);
 		PredataCreator creator = new PredataCreator();
 		creator.createMapWithMinCount(trainPosts, 0);
 		ProbabilityCalculator pc = new ProbabilityCalculator(creator.getWordMap(), dp);
+		int tp = 0;
+		int fn = 0;
+		int fp = 0;
+		int tn = 0;
+		int cnt = 0;
 		for(Post post : testPosts) {
 			double pos = Math.log(pc.getPosClassProbab());
 			double neg = Math.log(pc.getNegClassProbab());
@@ -27,8 +32,28 @@ public class Test {
 				pos += Math.log(pc.getPositiveProb(w));
 				neg += Math.log(pc.getNegativeProb(w));
 			}
+			int realLabel = Integer.valueOf(String.valueOf(post.getLabel(1)));
+			int prediction = (pos > neg) ? 1 : 0;
+			if (realLabel == 1 && prediction == 1) {
+				tp++;
+			} else if (realLabel == 1 && prediction == 0) {
+				fn++;
+			} else if (realLabel == 0 && prediction == 1) {
+				fp++;
+			} else if (realLabel == 0 && prediction == 0) {
+				tn++;
+			}
+			if (realLabel == prediction) cnt++;
+
 			System.out.println("Real label: " + post.getLabel(0) + "\tCalc. label: " + ((pos > neg) ? "1" : "0"));
 		}
+		int size = testPosts.size();
+		System.out.println("A: " + (double) cnt / size);
+		double P = 1.0 * tp / (tp + fp);
+		System.out.println("P: " + P);
+		double R = 1.0 * tp / (tp + fn);
+		System.out.println("R: " + R);
+		System.out.println("F1: " + 2.0 * P * R / (P + R));
 
 	}
 }

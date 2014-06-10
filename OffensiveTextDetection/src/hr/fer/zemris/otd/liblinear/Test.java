@@ -4,6 +4,7 @@ package hr.fer.zemris.otd.liblinear;
 import de.bwaldvogel.liblinear.*;
 import hr.fer.zemris.otd.dataPreprocessing.Post;
 import hr.fer.zemris.otd.dataPreprocessing.PredataCreator;
+import hr.fer.zemris.otd.statistics.PostLength;
 import hr.fer.zemris.otd.stemming.DataManager;
 import hr.fer.zemris.otd.utils.Deserialize;
 import hr.fer.zemris.otd.vectors.PostVector;
@@ -27,7 +28,7 @@ public class Test {
 	private static String wordList1 = "C:/Users/Big Sven/Desktop/experiment/lemma/my_word_list.txt";
 	private static String wordList2 = "C:/Users/Big Sven/Desktop/experiment/lemma/my_words.txt";
 
-	private static int label = 0;
+	private static int label = 1;
 
 	public static void main(String[] args) throws IOException {
 
@@ -42,19 +43,25 @@ public class Test {
 //		Pair<List<Post>, List<Post>> dataSets = splitter.createDatasets(
 //				allPosts, 0.8, label);
 //
-//		Serialize.object(dataSets.x, "trainSetArt.ser");
-//		Serialize.object(dataSets.y, "testSetArt.ser");
+//		Serialize.object(dataSets.x, "trainSetArtAdv.ser");
+//		Serialize.object(dataSets.y, "testSetArtAdv.ser");
 
 
-		List<Post> trainPosts = Deserialize.listPosts("trainSetArt.ser");
-		List<Post> testPosts = Deserialize.listPosts("testSetArt.ser");
+		List<Post> trainPosts = Deserialize.listPosts("trainSet.ser");
+		List<Post> testPosts = Deserialize.listPosts("testSet.ser");
+
+
+		PostLength.calcAll(trainPosts, testPosts);
+
 
 		DataManager stemmer = new DataManager();
 //		stemmer.writePlainPosts(dataSets.x, directory + postFile);
 //		stemmer.stemPosts(directory, "Croatian_stemmer.py", postFile,
 //				stemmedPosts);
 //		stemmer.createMap(directory + stemmedPosts);
+		//creator.createImportantWords("wekaStatsUTF8.txt");
 		creator.createMapWithMinCount(trainPosts, 0);
+
 		//creator.createMap(wordList2);
 
 
@@ -74,14 +81,17 @@ public class Test {
 		DataProvider testSet = new DataProvider(testVecs);
 
 
-//		FileWriter fw1 = new FileWriter("trainVecsRude.txt");
-//		FileWriter fw2 = new FileWriter("testVecsRude.txt");
-//		for(PostVector v : trainVecs) {
+		System.out.println(trainVecs.stream().filter(vec -> vec.getLabel(label) == '0').count());
+		System.out.println(testVecs.stream().filter(vec -> vec.getLabel(label) == '0').count());
+
+//		FileWriter fw1 = new FileWriter("trainVecs.txt");
+//		FileWriter fw2 = new FileWriter("testVecs.txt");
+//		for (PostVector v : trainVecs) {
 //			int index = 1;
 //			char[] labels = v.getLabels();
-//			fw1.append(labels[0] + " ");
-//			for(Double val : v.getValues()) {
-//				if(Double.compare(val, 0.0) == 0) {
+//			fw1.append(labels[label] + " ");
+//			for (Double val : v.getValues()) {
+//				if (Double.compare(val, 0.0) == 0) {
 //					continue;
 //				}
 //				fw1.append(index + ":" + val + " ");
@@ -94,7 +104,7 @@ public class Test {
 //		for (PostVector v : testVecs) {
 //			int index = 1;
 //			char[] labels = v.getLabels();
-//			fw2.append(labels[0] + " ");
+//			fw2.append(labels[label] + " ");
 //			for (Double val : v.getValues()) {
 //				if (Double.compare(val, 0.0) == 0) {
 //					continue;
@@ -115,21 +125,38 @@ public class Test {
 
 
 		/**
-		 * Training... at the moment it looks like CV but i was just experimenting
+		 * Training...
 		 */
-		for (int x = -15; x <= 15; x++) {
-			params.setC(Math.pow(2, x));
-			Model model = Linear.train(problem, params);
-			int cnt = 0;
-			for (PostVector v : testSet.getVectors()) {
-				Feature[] vector = getFeature(v);
-				int realLabel = Integer.valueOf(String.valueOf(v.getLabel(label)));
-				int prediction = (int) Linear.predict(model, vector);
-				if (realLabel == prediction) cnt++;
-			}
-			System.out.println("For C = " + params.getC() + " accuracy is: " + 1.0 * cnt / testPosts.size());
-		}
 
+		params.setC(Math.pow(2, -6));
+		Model model = Linear.train(problem, params);
+		int tp = 0;
+		int fn = 0;
+		int fp = 0;
+		int tn = 0;
+		int cnt = 0;
+		for (PostVector v : testSet.getVectors()) {
+			Feature[] vector = getFeature(v);
+			int realLabel = Integer.valueOf(String.valueOf(v.getLabel(label)));
+			int prediction = (int) Linear.predict(model, vector);
+			if (realLabel == 1 && prediction == 1) {
+				tp++;
+			} else if (realLabel == 1 && prediction == 0) {
+				fn++;
+			} else if (realLabel == 0 && prediction == 1) {
+				fp++;
+			} else if (realLabel == 0 && prediction == 0) {
+				tn++;
+			}
+			if(realLabel == prediction) cnt++;
+		}
+		int size = testVecs.size();
+		System.out.println("A: " + (double)cnt / size);
+		double P = 1.0 * tp / (tp + fp);
+		System.out.println("P: " + P);
+		double R = 1.0 * tp / (tp + fn);
+		System.out.println("R: " + R);
+		System.out.println("F1: " + 2.0 * P * R / (P + R));
 
 		/**
 		 * CROSS VALIDATION

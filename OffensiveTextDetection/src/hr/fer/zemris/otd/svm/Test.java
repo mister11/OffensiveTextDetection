@@ -34,8 +34,8 @@ public class Test {
 //		Pair<List<Post>, List<Post>> dataSets = splitter.createDatasets(
 //				allPosts, 0.8);
 
-		List<Post> trainPosts = Deserialize.listPosts("trainSetArt.ser");
-		List<Post> testPosts = Deserialize.listPosts("testSetArt.ser");
+		List<Post> trainPosts = Deserialize.listPosts("trainSet.ser");
+		List<Post> testPosts = Deserialize.listPosts("testSet.ser");
 		//DataManager stemmer = new DataManager();
 //		stemmer.writePlainPosts(dataSets.x, directory + postFile);
 //		stemmer.stemPosts(directory, "Croatian_stemmer.py", postFile,
@@ -50,14 +50,14 @@ public class Test {
 		VectorCreator numericTrainSet = new VectorCreator(
 				null, creator.getWordMap(), trainPosts);
 		trainVecs = numericTrainSet.createOccurrenceVectors();
-		numericTrainSet.nNormalizeVectors(trainVecs);
+		numericTrainSet.normalizeVectors(trainVecs);
 		PreprocessData trainSet;
 		trainSet = new PreprocessData(trainVecs);
 
 		VectorCreator numericTestSet = new VectorCreator(
 				null, creator.getWordMap(), testPosts);
 		testVecs = numericTestSet.createOccurrenceVectors();
-		numericTestSet.nNormalizeVectors(testVecs);
+		numericTestSet.normalizeVectors(testVecs);
 		PreprocessData testSet;
 		testSet = new PreprocessData(testVecs);
 		// }
@@ -110,18 +110,35 @@ public class Test {
 //					+ params.eps + " accuracy is: " + (1.0 * cnt / size));
 //		}
 
-		//data = new PreprocessData("testSet.ser");
+		//PreprocessData data = new PreprocessData("testSet.ser");
 		svm_node[][] testNodes = testSet.getNodes();
 		double[] labels = testSet.getLabels();
 		int i = 0;
+		int tp = 0;
+		int fn = 0;
+		int fp = 0;
+		int tn = 0;
 		int cnt = 0;
 		for (svm_node[] n : testNodes) {
-			int l = (int) svm.svm_predict(model, n);
-			int ml = (int) labels[i++];
-			if (l == ml) {
-				cnt++;
+			int prediction = (int) svm.svm_predict(model, n);
+			int realLabel = (int) labels[i++];
+			if (realLabel == 1 && prediction == 1) {
+				tp++;
+			} else if (realLabel == 1 && prediction == 0) {
+				fn++;
+			} else if (realLabel == 0 && prediction == 1) {
+				fp++;
+			} else if (realLabel == 0 && prediction == 0) {
+				tn++;
 			}
+			if (realLabel == prediction) cnt++;
 		}
-		System.out.println(1.0 * cnt / labels.length);
+		int size = testVecs.size();
+		System.out.println("A: " + (double) cnt / size);
+		double P = 1.0 * tp / (tp + fp);
+		System.out.println("P: " + P);
+		double R = 1.0 * tp / (tp + fn);
+		System.out.println("R: " + R);
+		System.out.println("F1: " + 2.0 * P * R / (P + R));
 	}
 }

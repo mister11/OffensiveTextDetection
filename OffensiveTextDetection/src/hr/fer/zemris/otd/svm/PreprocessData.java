@@ -42,7 +42,7 @@ public class PreprocessData {
 		int i = 0;
 		for (PostVector v : vectors) {
 			char[] vLabels = v.getLabels();
-			labels[i++] = Double.valueOf(String.valueOf(vLabels[0]));
+			labels[i++] = Double.valueOf(String.valueOf(vLabels[1]));
 		}
 		return labels;
 	}
