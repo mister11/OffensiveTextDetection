@@ -24,10 +24,12 @@ public class PredataCreator {
 
 	private Map<String, Integer> wordMap;
 	private List<Post> posts;
+	private List<String> imporatantWords;
 
 	public PredataCreator() {
-		wordMap = new HashMap<>();
-		posts = new ArrayList<>();
+		this.wordMap = new HashMap<>();
+		this.posts = new ArrayList<>();
+		this.imporatantWords = new ArrayList<>();
 	}
 
 	private static boolean isNotRubbish(String w) {
@@ -35,6 +37,15 @@ public class PredataCreator {
 		Pattern p = Pattern.compile("@?\\p{L}+.*");
 		Matcher m = p.matcher(w);
 		return m.matches();
+	}
+
+
+	public void createImportantWords(String filename) throws IOException {
+		List<String> lines = Files.readAllLines(new File(filename).toPath(), StandardCharsets.UTF_8);
+		lines.forEach(line -> {
+			String[] parts = line.trim().split("\\s+");
+			this.imporatantWords.add(parts[2].trim().toLowerCase());
+		});
 	}
 
 	/**
@@ -173,7 +184,6 @@ public class PredataCreator {
 		}
 		return specPosts;
 	}
-
 	// method reads post labels
 	private char[] readLabels(String labelLine) {
 		char[] labels = new char[labelLine.split("\\p{Z}").length];
@@ -194,5 +204,9 @@ public class PredataCreator {
 
 	public List<Post> getPosts() {
 		return posts;
+	}
+
+	public List<String> getImporatantWords() {
+		return imporatantWords;
 	}
 }

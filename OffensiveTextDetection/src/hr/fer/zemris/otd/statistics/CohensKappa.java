@@ -42,7 +42,7 @@ public class CohensKappa {
 
 	public int[] makeStatsTableNoX(List<String> first, List<String> second) {
 		int[] stats = new int[4];
-		int size = first.size();
+		int size = Math.min(first.size(), second.size());
 		for (int i = 0; i < size; i++) {
 			if (first.get(i).equals("1") && second.get(i).equals("1")) {
 				stats[0]++;
@@ -59,7 +59,7 @@ public class CohensKappa {
 
 	public int[] makeStatsTable(List<String> first, List<String> second) {
 		int[] stats = new int[9];
-		int size = first.size();
+		int size = Math.min(first.size(), second.size());
 		for (int i = 0; i < size; i++) {
 			if (first.get(i).equals("1") && second.get(i).equals("1")) {
 				stats[0]++;

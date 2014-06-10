@@ -25,7 +25,7 @@ public class ArtPostsCreator {
 	}
 
 	private void getBad(List<String> lines, List<Post> posts, Random r) {
-		int size = (int) (lines.size() * 0.2 + 0.5);
+		int size = 35;
 		for (int i = 0; i < size; i++) {
 			Post p = new Post(2);
 			p.setLabel(0, '1');
@@ -41,14 +41,21 @@ public class ArtPostsCreator {
 	}
 
 	private void getGood(List<String> lines, List<Post> posts, Random r) {
-		int size = (int) (lines.size() * 0.8 + 0.5);
+		int size = 165;
 		for(int i=0; i < size; i++) {
 			Post p = new Post(2);
-			p.setLabel(0, '0');
-			p.setLabel(1, '0');
 			StringBuilder sb = new StringBuilder();
 			for(int j=0; j < 7; j++) {
-				int index = r.nextInt(40);
+				int index;
+				if(r.nextDouble() < 0.1) {
+					index = 40 + r.nextInt(10);
+					p.setLabel(0, '1');
+					p.setLabel(1, '1');
+				} else {
+					index = r.nextInt(40);
+					p.setLabel(0, '0');
+					p.setLabel(1, '0');
+				}
 				sb.append(lines.get(index) + " ");
 			}
 			p.setPostText(sb.toString().trim());

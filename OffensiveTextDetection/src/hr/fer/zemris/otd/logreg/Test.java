@@ -4,10 +4,7 @@ import hr.fer.zemris.otd.crossValidation.CrossValidation;
 import hr.fer.zemris.otd.dataPreprocessing.Post;
 import hr.fer.zemris.otd.dataPreprocessing.PredataCreator;
 import hr.fer.zemris.otd.logreg.utils.LogRegUtils;
-import hr.fer.zemris.otd.stemming.DataManager;
-import hr.fer.zemris.otd.utils.Pair;
-import hr.fer.zemris.otd.vectors.EqualDatasetSplitter;
-import hr.fer.zemris.otd.vectors.IDatasetSplitter;
+import hr.fer.zemris.otd.utils.Deserialize;
 import hr.fer.zemris.otd.vectors.PostVector;
 import hr.fer.zemris.otd.vectors.VectorCreator;
 import org.apache.commons.math3.linear.RealMatrix;
@@ -32,32 +29,36 @@ public class Test {
 
 		int mapSize = 0;
 
+
+		List<Post> trainPosts = Deserialize.listPosts("trainSetArt.ser");
+		List<Post> testPosts = Deserialize.listPosts("testSetArt.ser");
+
 		List<PostVector> trainSet = new ArrayList<>();
 		List<PostVector> testSet = new ArrayList<>();
 
 		PredataCreator creator = new PredataCreator();
-		creator.createPostsList("C:/Users/Big Sven/Desktop/experiment/lemma/novo_razmaci_bezPraznihLinija.txt");
-		List<Post> allPosts = creator.getPosts();
-
-		IDatasetSplitter splitter = new EqualDatasetSplitter();
-		Pair<List<Post>, List<Post>> dataSets = splitter.createDatasets(
-				allPosts, 0.8, 1);
-		DataManager stemmer = new DataManager();
-		stemmer.writePlainPosts(dataSets.x, directory + postFile);
-		stemmer.stemPosts(directory, "Croatian_stemmer.py", postFile,
-				stemmedPosts);
-		stemmer.createMap(directory + stemmedPosts);
-		// creator.createMapWithMinCount(dataSets.x, 1); //
+//		creator.createPostsList("C:/Users/Big Sven/Desktop/experiment/lemma/novo_razmaci_bezPraznihLinija.txt");
+//		List<Post> allPosts = creator.getPosts();
+//
+//		IDatasetSplitter splitter = new EqualDatasetSplitter();
+//		Pair<List<Post>, List<Post>> dataSets = splitter.createDatasets(
+//				allPosts, 0.8, 1);
+//		DataManager stemmer = new DataManager();
+//		stemmer.writePlainPosts(dataSets.x, directory + postFile);
+//		stemmer.stemPosts(directory, "Croatian_stemmer.py", postFile,
+//				stemmedPosts);
+//		stemmer.createMap(directory + stemmedPosts);
+		creator.createMapWithMinCount(trainPosts, 0); //
 		// creator.createMap(outputPath);
-		mapSize = stemmer.getRealMap().size();
+		mapSize = creator.getWordMap().size();
 
 		VectorCreator numericTrainSet = new VectorCreator(
-				stemmer.getStemMapping(), stemmer.getRealMap(), dataSets.x);
+				null, creator.getWordMap(), trainPosts);
 		trainSet = numericTrainSet.createOccurrenceVectors();
 		numericTrainSet.nNormalizeVectors(trainSet);
 
 		VectorCreator numericTestSet = new VectorCreator(
-				stemmer.getStemMapping(), stemmer.getRealMap(), dataSets.y);
+				null, creator.getWordMap(), trainPosts);
 		testSet = numericTestSet.createOccurrenceVectors();
 		numericTestSet.nNormalizeVectors(testSet);
 

@@ -39,7 +39,7 @@ public class DataProcessor {
 		for (Post p : positiveSet) {
 			for (String word : p.getPostText().split("\\p{Z}")) {
 				String w = word.trim().toLowerCase();
-				if (!isNotRubbish(w)) {
+				if (!isNotRubbish(w) || !words.contains(w)) {
 					continue;
 				}
 				cnt++;
@@ -53,7 +53,7 @@ public class DataProcessor {
 		for (Post p : negativeSet) {
 			for(String word : p.getPostText().split("\\p{Z}")) {
 				String w = word.trim().toLowerCase();
-				if(!isNotRubbish(w)) {
+				if(!isNotRubbish(w) || !words.contains(w)) {
 					continue;
 				}
 				cnt++;
@@ -114,9 +114,9 @@ public class DataProcessor {
 	private void setPosAndNeg() {
 		for (Post p : vectors) {
 			char[] labels = p.getLabels();
-			if (labels[0] == '0') {
+			if (labels[1] == '0') {
 				negativeSet.add(p);
-			} else if (labels[0] == '1') {
+			} else if (labels[1] == '1') {
 				positiveSet.add(p);
 			}
 		}
