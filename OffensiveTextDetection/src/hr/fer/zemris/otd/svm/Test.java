@@ -34,8 +34,8 @@ public class Test {
 //		Pair<List<Post>, List<Post>> dataSets = splitter.createDatasets(
 //				allPosts, 0.8);
 
-		List<Post> trainPosts = Deserialize.listPosts("trainSet.ser");
-		List<Post> testPosts = Deserialize.listPosts("testSet.ser");
+		List<Post> trainPosts = Deserialize.listPosts("data/trainSet.ser");
+		List<Post> testPosts = Deserialize.listPosts("data/testSet.ser");
 		//DataManager stemmer = new DataManager();
 //		stemmer.writePlainPosts(dataSets.x, directory + postFile);
 //		stemmer.stemPosts(directory, "Croatian_stemmer.py", postFile,

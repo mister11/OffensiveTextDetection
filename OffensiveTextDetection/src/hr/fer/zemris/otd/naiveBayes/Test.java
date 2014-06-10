@@ -12,8 +12,8 @@ import java.util.List;
 public class Test {
 
 	public static void main(String[] args) {
-		List<Post> trainPosts = Deserialize.listPosts("trainSet.ser");
-		List<Post> testPosts = Deserialize.listPosts("testSet.ser");
+		List<Post> trainPosts = Deserialize.listPosts("data/trainSet.ser");
+		List<Post> testPosts = Deserialize.listPosts("data/testSet.ser");
 
 		DataProcessor dp = new DataProcessor(trainPosts);
 		PredataCreator creator = new PredataCreator();

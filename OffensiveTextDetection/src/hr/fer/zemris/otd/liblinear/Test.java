@@ -47,8 +47,8 @@ public class Test {
 //		Serialize.object(dataSets.y, "testSetArtAdv.ser");
 
 
-		List<Post> trainPosts = Deserialize.listPosts("trainSet.ser");
-		List<Post> testPosts = Deserialize.listPosts("testSet.ser");
+		List<Post> trainPosts = Deserialize.listPosts("data/trainSet.ser");
+		List<Post> testPosts = Deserialize.listPosts("data/testSet.ser");
 
 
 		PostLength.calcAll(trainPosts, testPosts);
